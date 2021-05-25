@@ -1,0 +1,15 @@
+<apex:page controller="faculties">
+ <apex:pageBlock >
+  <apex:pageBlockSection >
+  <apex:form >
+   
+   Faculty Name <apex:inputText /><br/>
+   Male <apex:inputCheckbox /><br/>
+   Female <apex:inputCheckbox /><br/>
+    <apex:commandButton value="save"/>
+    <apex:commandButton value="save & new"/>
+    <apex:commandButton value="Cancel"/>
+  </apex:form>
+  </apex:pageBlockSection>
+ </apex:pageBlock> 
+</apex:page>

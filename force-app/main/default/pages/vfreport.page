@@ -1,0 +1,71 @@
+<apex:page >
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsforce/1.5.0/jsforce.js"></script>
+    <div id="responseMessage"></div>
+<div id="displayrows"></div>
+<div id="totalrows"></div>
+<script type="text/javascript">
+        j$ = jQuery.noConflict();
+        var divtable;
+        j$(document).ready(function() {
+            var conn = new jsforce.Connection({accessToken: '{!$Api.Session_Id}'});
+            var reportId;
+            conn.query("SELECT DeveloperName,Id,Name FROM Report Where Format='Tabular' limit 1", function(err, result) {
+                if (err) { return console.error(err); }
+                if(result.records.length ==0){
+                    alert('Please Modify Query To Get the Reports');
+                }
+                reportId=result.records[0].Id;
+                if(reportId != null){
+                        var report = conn.analytics.report(reportId);
+                        report.execute({ details: true }, function(err, meta) {
+                          if (err) { return console.error(err); }
+                          console.log(meta.reportMetadata["detailColumns"]);
+                          var columnnames=meta.reportMetadata["detailColumns"];
+                          var labelname="<table border='2'><tr><td>";
+                          var fieldvalues='';
+                          if(columnnames.length >4)
+                          {
+                              labelname =labelname+meta.reportExtendedMetadata["detailColumnInfo"][columnnames[0]].label+'</td><td>';
+                              labelname =labelname+meta.reportExtendedMetadata["detailColumnInfo"][columnnames[1]].label+'</td><td>';
+                              labelname =labelname+meta.reportExtendedMetadata["detailColumnInfo"][columnnames[columnnames.length-2]].label+'</td><td>';
+                              labelname =labelname+meta.reportExtendedMetadata["detailColumnInfo"][columnnames[columnnames.length-1]].label+'</td><td>';
+                          }else
+                          {
+                              for (var i = 0; i < columnnames.length; i++) 
+                              { 
+                                labelname =labelname+meta.reportExtendedMetadata["detailColumnInfo"][columnnames[i]].label+'</td><td>';
+                              }
+                          }
+                          labelname =labelname.slice(0, (labelname.length)-4) +'</tr>';
+                          var rowlength=meta.factMap["T!T"].rows.length;
+                          for (var j = 0; j < rowlength; j++)
+                          {
+                              var collength=meta.factMap["T!T"].rows[j]["dataCells"].length;
+                              fieldvalues  = fieldvalues+ '<tr><td>';
+                              if(collength >4)
+                              {
+                                  fieldvalues = fieldvalues +meta.factMap["T!T"].rows[j]["dataCells"][0].label+'</td><td>';
+                                  fieldvalues = fieldvalues +meta.factMap["T!T"].rows[j]["dataCells"][0].label+'</td><td>';
+                                  fieldvalues = fieldvalues +meta.factMap["T!T"].rows[j]["dataCells"][collength-2].label+'</td><td>';
+                                  fieldvalues = fieldvalues +meta.factMap["T!T"].rows[j]["dataCells"][collength-1].label+'</td><td>';
+                              }else
+                              {
+                                  for (var k = 0; k < collength; k++)
+                                  {
+                                      fieldvalues = fieldvalues +meta.factMap["T!T"].rows[j]["dataCells"][k].label+'</td><td>';
+                                  }
+                              }
+                              fieldvalues  =fieldvalues+ '</td></tr>';
+                          }
+                            labelname  =labelname + fieldvalues +'</table>';
+                      j$("#totalrows").text('GrandTotal:'+meta.factMap["T!T"].aggregates[0].label);      
+                      j$("#responseMessage").html(labelname);
+                    });
+                         
+                }
+            });    
+        });
+    </script>
+</apex:page>

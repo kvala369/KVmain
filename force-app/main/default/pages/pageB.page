@@ -1,0 +1,3 @@
+<apex:page showHeader="false" >
+  <apex:iframe src="https://c.ap1.visual.force.com/apex/lead" scrolling="true" id="theIframe"/>
+</apex:page>

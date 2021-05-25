@@ -1,0 +1,35 @@
+<apex:page controller="dpickcontroller">
+   <apex:form >
+      <apex:pageBlock title="Dependent Picklist">
+        <apex:pageBlockSection columns="6">
+         <apex:selectList size="1" value="{!country}">
+         <b>Country</b> <apex:selectOptions value="{!con}" id="co"/>
+         <apex:actionSupport event="onchange" reRender="st,ct"/>
+         </apex:selectList>
+         <apex:selectList value="{!state}" size="1" id="st">
+          <b>State</b><apex:selectOptions value="{!sta}"/>
+          <apex:actionSupport event="onchange" reRender="ct"/>
+         </apex:selectList>
+         <apex:selectList value="{!city}" size="1" id="ct">
+          <b>City</b><apex:selectOptions value="{!cit}"/>
+          <apex:actionSupport event="onchange" />
+         </apex:selectList>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection columns="6">
+          <apex:selectList size="1" value="{!country2}">
+         <b>Country2</b> <apex:selectOptions value="{!con2}" />
+         <apex:actionSupport event="onchange" reRender="st2,ct2"/>
+         </apex:selectList>
+         <apex:selectList value="{!states}" size="1" id="st2">
+          <b>State2</b><apex:selectOptions value="{!sta2}"/>
+          <apex:actionSupport event="onchange" reRender="ct2"/>
+         </apex:selectList>
+         <apex:selectList value="{!cities}" size="1" id="ct2">
+          <b>City2</b><apex:selectOptions value="{!cit2}"/>
+         </apex:selectList>
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+      
+     value {!AID}
+    </apex:form>
+</apex:page>

@@ -1,0 +1,40 @@
+<apex:page standardController="Opportunity"> 
+<apex:sectionHeader title="Opportunity Edit" subtitle="{!Opportunity.name}"/> 
+<apex:form > 
+<apex:pageBlock title="Opportunity Edit" mode="edit"> 
+<apex:pageBlockButtons location="top"> 
+<apex:commandButton value="Save" action="{!save}"/> 
+<apex:commandButton value="Save & New" action="{!save}" /> 
+<apex:commandButton value="Cancel" action="{!cancel}"/> 
+</apex:pageBlockButtons> <apex:pageBlockButtons location="bottom"> 
+<apex:commandButton value="Save" action="{!save}"/> 
+<apex:commandButton value="Save & New" action="{!save}" /> 
+<apex:commandButton value="Cancel" action="{!cancel}"/> 
+</apex:pageBlockButtons> 
+<apex:pageBlockSection title="Opportunity Information" columns="2"> 
+<apex:inputField value="{!Opportunity.OwnerId}" required="false"/> 
+<apex:inputField value="{!Opportunity.Amount}" required="false"/> 
+<apex:inputField value="{!Opportunity.IsPrivate}" required="false"/> 
+<apex:inputField value="{!Opportunity.CloseDate}" required="true"/> 
+<apex:inputField value="{!Opportunity.Name}" required="true"/> 
+<apex:inputField value="{!Opportunity.NextStep}" required="false"/> 
+<apex:inputField value="{!Opportunity.AccountId}" required="false"/> 
+<apex:inputField value="{!Opportunity.StageName}" required="true"/> 
+<apex:inputField value="{!Opportunity.Type}" required="false"/> 
+<apex:inputField value="{!Opportunity.Probability}" required="false"/> 
+<apex:inputField value="{!Opportunity.LeadSource}" required="false"/> 
+<apex:inputField value="{!Opportunity.CampaignId}" required="false"/> 
+</apex:pageBlockSection> 
+<apex:pageBlockSection title="Additional Information" columns="2"> 
+<apex:inputField value="{!Opportunity.OrderNumber__c}" required="false"/> 
+<apex:inputField value="{!Opportunity.MainCompetitors__c}" required="false"/> 
+<apex:inputField value="{!Opportunity.CurrentGenerators__c}" required="false"/> 
+<apex:inputField value="{!Opportunity.DeliveryInstallationStatus__c}" required="false"/> 
+<apex:inputField value="{!Opportunity.TrackingNumber__c}" required="false"/> 
+</apex:pageBlockSection> 
+<apex:pageBlockSection title="Description Information" columns="1"> 
+<apex:inputField value="{!Opportunity.Description}" required="false"/> 
+</apex:pageBlockSection> 
+</apex:pageBlock> 
+</apex:form> 
+</apex:page>

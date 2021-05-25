@@ -1,0 +1,13 @@
+<apex:page controller="picklistchangespage1" >
+    <apex:form >
+        <apex:pageBlock >
+          <apex:selectList size="1" value="{!selectval}">
+              <apex:selectOptions value="{!options}"></apex:selectOptions>
+              <apex:actionSupport event="onchange" action="{!changeValue}" rerender="pb"/>
+          </apex:selectList>
+      </apex:pageBlock>
+        <apex:pageBlock >
+        <apex:include pageName="{!page1}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

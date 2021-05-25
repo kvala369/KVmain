@@ -1,0 +1,17 @@
+<apex:page controller="HomePageOppsclass" tabStyle="mobile__c">
+    <apex:pageBlock title="Mobile Overview">
+        
+            <apex:pageBlockTable value="{!mobile}" var="opp">
+                <apex:column >
+                <apex:facet name="header">Name</apex:facet>
+                <apex:outputLink value="/{!opp.Id}" target="_blank">
+                    <apex:outputField value="{!opp.Name}"/>
+                </apex:outputLink>
+                </apex:column>
+                <apex:column value="{!opp.name}" />
+                <apex:column value="{!opp.Price__c}"/>
+                <apex:column value="{!opp.Qty__c}"/>
+            </apex:pageBlockTable>
+        <!-- <apex:pageBlockSection title="My mobiles"></apex:pageBlockSection> -->
+    </apex:pageBlock>
+</apex:page>

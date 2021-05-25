@@ -1,0 +1,52 @@
+<apex:page controller="picklistchangespage">
+<apex:includeScript value="{!URLFOR($Resource.jquery1)}"/>
+    <apex:form >
+        Name :<apex:inputText /><br/>
+        Email:<apex:inputText /><br/>
+        Status :<apex:selectList size="1" id="pl" value="{!selectval}">
+            <apex:selectOptions value="{!Items}"></apex:selectOptions>
+            
+        </apex:selectList>
+        <apex:pageBlock id="pb"><apex:include pageName="page1"/></apex:pageBlock>
+        <apex:pageBlock id="pbt"><apex:include pageName="page2"/></apex:pageBlock>
+        <apex:pageBlock id="pbt1"><apex:include pageName="page3"/></apex:pageBlock>
+        
+    </apex:form>
+    <script>
+     var $jquery = jQuery.noConflict();
+     $jquery(document).ready(function(){
+   
+   var ele = $jquery('[id="j_id0:j_id2:pl"]');
+
+     var ele1 = $jquery('[id="j_id0:j_id2:pb"]');
+     var ele2 = $jquery('[id="j_id0:j_id2:pbt"]');
+     var ele3 = $jquery('[id="j_id0:j_id2:pbt1"]');
+    $jquery(ele1).hide();
+    $jquery(ele2).hide();
+    $jquery(ele3).hide();
+     $jquery(ele).change(function(){
+      var valh = $jquery(this).val();
+      if(valh == 'c'){
+       $jquery(ele1).hide();
+       $jquery(ele2).hide();
+       $jquery(ele3).show();
+      }
+      if(valh == 'none'){
+       $jquery(ele1).hide();
+       $jquery(ele2).hide();
+       $jquery(ele3).hide();
+      }  
+      if(valh == 'b'){
+       $jquery(ele1).hide();
+       $jquery(ele2).show();
+       $jquery(ele3).hide();
+      }
+      if(valh == 'a'){
+       $jquery(ele1).show();
+       $jquery(ele2).hide();
+       $jquery(ele3).hide();
+      }
+     });
+     });
+    </script>
+</apex:page>

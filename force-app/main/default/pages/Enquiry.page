@@ -1,0 +1,29 @@
+<apex:page standardController="enquiry__c">
+<apex:sectionHeader title="enquiry__c Edit" subtitle="{!enquiry__c.name}"/>
+ <apex:form >
+  <apex:pageBlock title="enquiry__c Edit" mode="edit">
+   <apex:pageBlockButtons location="top">
+  <apex:commandButton value="Save" action="{!save}"/>
+  <apex:commandButton value="Save & New" action="{!save}" />
+  <apex:commandButton value="Cancel" action="{!cancel}"/>
+  </apex:pageBlockButtons>
+   <apex:pageBlockButtons location="bottom">
+    <apex:commandButton value="Save" action="{!save}"/>
+     <apex:commandButton value="Save & New" action="{!save}" />
+      <apex:commandButton value="Cancel" action="{!cancel}"/>
+       </apex:pageBlockButtons> <apex:pageBlockSection title="Information" columns="2">
+        <apex:inputField value="{!enquiry__c.Name}" required="true"/>
+        <apex:inputField value="{!enquiry__c.Qualification__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.contact__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.year_of_passing__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.E_mail__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.Address__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.Prefered_time__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.Type__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.subject__c}" required="false"/>
+        <apex:inputField value="{!enquiry__c.OwnerId}" required="false"/>
+       <apex:inputField value="{!enquiry__c.Trainer__c}" required="false"/>
+     </apex:pageBlockSection>
+   </apex:pageBlock>
+ </apex:form>
+</apex:page>

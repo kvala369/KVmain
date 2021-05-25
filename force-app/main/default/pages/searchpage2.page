@@ -1,0 +1,55 @@
+<apex:page controller="Sample1" tabStyle="Account">
+    <apex:actionstatus id="actStatus">
+        <apex:facet name="start">
+            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                <span class="waitingDescription">Loading...</span>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionstatus>
+<apex:form >
+<apex:pageMessages />
+    <apex:pageBlock id="pg">
+        <apex:pageBlockSection >
+            <apex:panelGrid columns="3" cellpadding="3" cellspacing="3">
+                <apex:outputLabel value="Account Name: "/>
+                <apex:inputText value="{!acctName}"/>
+                <apex:commandButton value="Go" action="{!searchAcct}" status="actStatus" reRender="pg"/>
+            </apex:panelGrid> 
+        </apex:pageBlockSection>
+        <apex:pageBlockSection rendered="{!listAcctOptions.Size > 0}" title="Account Selection">
+            <apex:panelGrid columns="2">
+                <apex:outputLabel value="Select Account: "/>
+                <apex:selectList value="{!selectedAcctId}" size="1">
+                    <apex:selectOptions value="{!listAcctOptions}"/>
+                    <apex:actionSupport action="{!fetchRecords}" event="onchange" status="actStatus" reRender="pg"/>
+                </apex:selectList>
+            </apex:panelGrid>
+        </apex:pageBlockSection>        
+        <apex:pageBlockSection rendered="{!listContacts.Size > 0}" title="Contacts">
+            <apex:pageBlockTable value="{!listContacts}" var="con">
+                <apex:column >
+                    <apex:outputLink target="_blank" value="/{!con.Id}">{!con.Name}</apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection rendered="{!listOpptys.Size > 0}" title="Opportunities">
+            <apex:pageBlockTable value="{!listOpptys}" var="oppty">
+                <apex:column >
+                    <apex:outputLink target="_blank" value="/{!oppty.Id}">{!oppty.Name}</apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection rendered="{!listCases.Size > 0}" title="Cases">
+            <apex:pageBlockTable value="{!listCases}" var="cas">
+                <apex:column >
+                    <apex:outputLink target="_blank" value="/{!cas.Id}">{!cas.CaseNumber}</apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+
+</apex:page>

@@ -1,0 +1,19 @@
+<apex:page controller="opportunityListCon">
+    <apex:form >
+        <apex:pageBlock id="pb" >
+            <apex:pageBlockTable value="{!Opportunities}" var="o" id="pbt">
+                <apex:column value="{!o.name}"/>
+                <apex:column value="{!o.closedate}"/>
+            </apex:pageBlockTable>
+           
+            <apex:commandButton rendered="{!setCon.hasPrevious}" value="first" action="{!setCon.first}" reRender="pb"/>
+            <apex:commandButton rendered="{!setCon.hasPrevious}" value="Previous" action="{!setCon.previous}" reRender="pb"/>
+            <apex:outputText rendered="{!(setCon.pageNumber * setCon.pageSize) < setCon.ResultSize}" value="{!setCon.pageNumber * setCon.pageSize} Of {!setCon.ResultSize}"></apex:outputText>
+            <apex:outputText rendered="{!(setCon.pageNumber * setCon.pageSize) >= setCon.ResultSize}" value="{!setCon.ResultSize} Of {!setCon.ResultSize}"></apex:outputText>
+           
+            <apex:commandButton rendered="{!setCon.hasNext}" value="next" action="{!setCon.next}" reRender="pb"/>
+           
+            <apex:commandButton rendered="{!setCon.hasNext}" value="last" action="{!setCon.last}" reRender="pb"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,31 @@
+<apex:page showHeader="false" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+alert('hello');
+    jQuery(document).ready(function() {
+        alert('hello1');
+        $('[id$=txt],[id$=txt1],[id$=txt2],[id$=txt3]').attr('disabled', true);
+          var flag = 0;
+
+        $('[id$=btn1]').click(function(d){
+           if(flag == 0){
+                $('[id$=txt],[id$=txt1],[id$=txt2],[id$=txt3]').attr('disabled', false);                      
+                flag = 1;
+           }else{
+                $('[id$=txt],[id$=txt1],[id$=txt2],[id$=txt3]').attr('disabled', true);
+                flag = 0;
+           }
+           return false;
+        });
+   });
+  </script>
+  
+  <!-- <apex:includeScript value="{!URLFOR($Resource.jQuery, '/jQuery/js/jquery-1.11.2.min.js')}"  /> -->
+  <apex:form id="theform">
+      <apex:inputText id="txt" /><br/>
+      <apex:inputText id="txt2" /><br/>
+      <apex:inputText id="txt3" /><br/>
+      <apex:inputText id="txt1" />
+      <apex:commandButton value="enable" onclick="toggleBut" reRender="theform" id="btn1"/>
+  </apex:form>
+</apex:page>

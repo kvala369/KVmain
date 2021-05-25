@@ -1,0 +1,16 @@
+<apex:page standardcontroller="account" id="myPage" extensions="enabledisable" standardStylesheets="false">
+    <apex:form id="form">
+    <apex:pageBlock >
+    <apex:pageBlockSection >
+    <apex:pageBlockSectionItem >
+    <apex:inputText disabled="{!dis}"/>
+        
+    </apex:pageBlockSectionItem>
+    
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:commandButton value="enable" action="{!disable}" rerender="form"/>
+         
+    </apex:form>
+ 
+</apex:page>

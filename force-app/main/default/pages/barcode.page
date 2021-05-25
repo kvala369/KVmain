@@ -1,0 +1,35 @@
+<apex:page controller="saveBarCodeController" id="PAGE" showheader="false">
+    <script>
+        function checkLength(){
+            var upc = document.getElementById("PAGE:FORM:BLK:PBSEC:PBSITEM:UPC").value;
+            if(upc.length != 12){
+                alert("Entered Code must be of 12 Digits.");
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
+    <apex:form id="FORM">        
+        <apex:pageblock id="BLK" title="Bar Code Generator">
+            <apex:pagemessages ></apex:pagemessages>
+            <apex:pageblocksection id="PBSEC">
+                <apex:pageblocksectionitem id="PBSITEM">
+                    <apex:outputlabel value="Please Enters 12 digits UPC or SKU code.">
+                    <apex:inputtext value="{!UPC}" required="true" id="UPC">
+                </apex:inputtext></apex:outputlabel></apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Select Product">
+                    <apex:selectlist value="{!selectedProduct}" size="1">
+                        <apex:selectoptions value="{!prodValue}"> 
+                    </apex:selectoptions></apex:selectlist>
+                </apex:outputlabel></apex:pageblocksectionitem>
+                <apex:image url="http://www.searchupc.com/drawupc.aspx?q={!UPC}" rendered="{!IF(UPC != null,true,false)}" style="margin-left: 450px;">                
+            </apex:image></apex:pageblocksection>
+            <apex:pageblockbuttons location="bottom">
+                <apex:commandbutton value="Show Bar Code" action="{!showBarCode}" onclick="return checkLength()">
+                <apex:commandbutton value="Save Bar Code" action="{!saveBarCode}" onclick="return checkLength()">
+            </apex:commandbutton></apex:commandbutton></apex:pageblockbuttons>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,18 @@
+<apex:page standardStylesheets="true">
+<style>
+div {
+  display: none;
+  position: absolute;
+}
+a:hover + div {
+  display: block;
+}
+
+</style>
+<apex:form >
+<a href="http://www.google.com" target="_blank">text</a>
+<div id="no1">Some content</div>
+
+<span title="I am hovering over the text">This is the text I want to have a mousover</span>
+</apex:form>
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page controller="facebookintegration" showHeader="false">
+    <apex:form >
+        <apex:commandButton value="Click" action="{!click}"/>
+        <apex:outputText value="{!bodyv}"/>
+    </apex:form>
+</apex:page>

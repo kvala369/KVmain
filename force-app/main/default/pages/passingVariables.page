@@ -1,0 +1,12 @@
+<apex:page controller="passingVariablesClass">
+<apex:form >
+        <apex:pageblock >
+            <apex:pageblockButtons >
+                <apex:commandButton value="Pass Values" action="{!Transfer}" />
+            </apex:pageblockButtons>
+            <apex:pageBlockSection >
+                <apex:inputText value="{!Value2Pass}" />
+            </apex:pageBlockSection>
+        </apex:pageblock>
+</apex:form>
+</apex:page>

@@ -1,0 +1,13 @@
+<apex:page standardController="Student_Name__c">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Student Information" >
+                <apex:repeat value="{!$objectType.Student_Name__c.fieldsets.StudentFieldSet}" var="stu">
+                    <apex:inputField value="{!Student_Name__c[stu]}"/>
+                </apex:repeat>
+
+            </apex:pageBlockSection>
+                            <apex:commandButton value="save"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

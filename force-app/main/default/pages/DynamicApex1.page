@@ -1,0 +1,28 @@
+<apex:page controller="DynamicApex1">
+<apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Objects"/>
+            </apex:pageBlockSectionItem>       
+            <apex:pageBlockSectionItem >
+                <apex:selectList size="1" value="{!obj}" >
+                    <apex:selectOptions value="{!objs}"/>
+                </apex:selectList>
+            </apex:pageBlockSectionItem>    
+        </apex:pageBlockSection>
+        <apex:pageblockButtons >
+            <apex:commandButton value="Fetch Fields" action="{!fetchFields}" />
+        </apex:pageblockButtons>
+    </apex:pageBlock>
+    <apex:pageBlock >
+        <apex:inputTextarea cols="150" rows="3" value="{!objquery}"/>
+    </apex:pageBlock>
+    <apex:pageblock id="flds" title="Fields">
+        <apex:pageblockTable value="{!objFields}" var="f">
+            <apex:column value="{!f}" />
+        </apex:pageblockTable>
+        
+    </apex:pageblock>   
+</apex:form> 
+</apex:page>

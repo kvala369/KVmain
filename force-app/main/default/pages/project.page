@@ -1,0 +1,29 @@
+<apex:page sidebar="false" >
+ <apex:form >
+  <apex:pageBlock title="enquiry"  >
+     <apex:pageBlockButtons >
+      <apex:commandButton value="save" action="{!Save}"/> 
+      <apex:commandButton value="save & new" action="save and new"/> 
+      <apex:commandButton value="cancel" action="{!cancel}"/>
+     </apex:pageBlockButtons>
+      <apex:panelGrid columns="4" cellspacing="2">
+        Name <apex:inputText />
+        Qualification <apex:inputText />
+        Contact <apex:inputText />
+        Year of Passing <apex:inputText />
+        Type <apex:inputText />
+         <!--Created By <apex:inputText /> -->
+        address <apex:inputTextarea />
+        Course <apex:inputText />
+        Trainer <apex:inputText />
+       <!-- Prefered Timing <apex:inputText /> --->
+       Prefered Time<apex:selectList size="1">
+        <apex:selectOption itemValue="Morning" itemLabel="Morning"/>
+        <apex:selectOption itemValue="Afternoon" itemLabel="Afternoon"/>
+        <apex:selectOption itemValue="Evening" itemLabel="Evening"/>
+       </apex:selectList>
+      </apex:panelGrid>
+      
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

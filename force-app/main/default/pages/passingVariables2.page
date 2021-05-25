@@ -1,0 +1,5 @@
+<apex:page controller="passingVariables2Class" >
+    <apex:form >
+        <apex:inputText value="{!Var01}" />
+    </apex:form>
+</apex:page>

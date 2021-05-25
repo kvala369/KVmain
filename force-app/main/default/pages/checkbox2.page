@@ -1,0 +1,27 @@
+<apex:page controller="DeletingChkbxRowCtrlr">
+
+    <apex:form id="fm">
+    <apex:pagemessages />
+        <apex:pageBlock id="pg">
+           <apex:pageBlockTable value="{!listWrapper}" var="w">
+           
+               <apex:column > 
+                   <apex:facet name="header">
+                       <apex:inputCheckbox value="{!allBool}">
+                           <apex:actionSupport action="{!selectAll}" event="onchange" reRender="pg"/>
+                       </apex:inputCheckbox>
+                   </apex:facet>
+                   <apex:inputCheckbox value="{!w.checked}"/>
+               </apex:column>
+               
+               
+               <apex:column value="{!w.emp.Name}"/>
+               <apex:column value="{!w.emp.age__c}"/>
+            </apex:pageBlockTable> 
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Delete" action="{!del}" reRender="fm"/>
+                   
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

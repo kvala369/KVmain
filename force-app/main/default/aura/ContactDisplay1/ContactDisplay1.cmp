@@ -1,0 +1,257 @@
+<aura:component controller="ContactAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                											    access="global" >
+    
+    <aura:attribute name="items" type="Object[]" default="[]" />
+    <aura:attribute name="idvalue" type="String" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+   
+            
+            
+         <lightning:layout multipleRows="true">   
+           <lightning:layoutItem size="12"> 
+            <div>
+            <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table_col-bordered slds-tree slds-table--tree" >
+                <!--div-->
+                    <thead>
+                        <tr class="slds-text-heading--label">
+                            <th scope="col" style="width:7%;">
+                                <div class="slds-hint-parent" title="details">Details</div>
+                            </th>
+                            <th scope="col"  title="ID" style="width:7%">
+                                <div class="slds-cell-wrap">LINE CONFIRMATION ID</div>
+                            </th>
+                            <th scope="col" style="width:7%;">
+                                <div class="slds-cell-wrap" title="Item Number">Item Number</div>
+                            </th>
+                            <th scope="col" style="width:7%;">
+                                <div class="slds-cell-wrap" title="Product Name">Product Name</div>
+                            </th>
+                            <th scope="col" style="width:7%;">
+                                <div class="slds-cell-wrap" title="Order Line Stage">Order Line Stage</div>
+                            </th>
+                            <th scope="col" style="width:7%;">
+                                <div class="slds-cell-wrap" title="Sales Order Qty">Sales Order Qty</div>
+                            </th>
+                            <th scope="col" style="width:7%">
+                                <div class="slds-cell-wrap" title="Scheduled Ship Date">Scheduled Ship Date</div>
+                            </th>
+                            <th scope="col" style="width:7%">
+                                <div class="slds-cell-wrap" title="Delivery Mode">Delivery Mode</div>
+                            </th>
+                            <th scope="col" style="width:7%">
+                                <div class="slds-cell-wrap" title="Total Discount">Total Discount</div>
+                            </th>
+                            <th scope="col" style="width:7%">
+                                <div class="slds-cell-wrap" title="Vendor Account">Vendor Account</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-cell-wrap" title="ERP Number">ERP Number</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-cell-wrap" title="Net Amount">Net  Amount</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-cell-wrap" title="Adjustment Type">Adjustment<br></br> Type</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-cell-wrap" title="Message by MOD">Message<br></br> by <br></br>MOD</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-cell-wrap" title="Address">Address</div>
+                            </th>
+                        </tr>
+                    </thead>
+                <!--/div-->	
+                
+                <aura:iteration items="{!v.items}" var="item" indexVar="itemIndex">
+                    <!--div-->
+                        <tbody>
+                            <!--div-->
+                            <tr>
+                                <!--div-->
+                                    <th scope="row" >
+                                        <!--div-->
+                                        <lightning:buttonIcon value="{!itemIndex}" onclick="{!c.toggle}" iconName="{!item.expanded?'utility:chevrondown':'utility:chevronright'}" />
+                                    	<!--/div-->
+                                    </th>
+                                <!--/div-->
+                                
+                                <th scope="row" style="width:7%;">
+                                    <div class="slds-truncate" >{!item.Id}</div>
+                                </th>
+                                
+                                <th scope="row" style="width:7%;">
+                                    <div class="slds-truncate">{!item.Name}</div>
+                                </th>
+                                
+                                <th scope="row" style="width:7%;">
+                                    <div class="slds-truncate">{!item.Name}</div>
+                                </th>
+                                
+                                <th scope="row" style="width:7%;"> 
+                                    <div class="slds-truncate">{!item.Name}</div>
+                                </th>
+                                <th scope="row" style="width:7%;"> 
+                                    <div class="slds-truncate">{!item.Name}</div>
+                                </th>   
+                                <th scope="row" style="width:7%;"> 
+                                    <div class="slds-truncate">{!item.Name}</div>
+                                </th> 
+                                <th scope="row" style="width:7%;"> 
+                                    <div class="slds-truncate">{!item.Name}</div>
+                                </th> 
+                                <th scope="row" style="width:7%;"> 
+                                    <div class="slds-cell-wrap">{!item.Name}</div>
+                                </th>
+                                <th scope="row" style="width:7%;"> 
+                                    <div class="slds-cell-wrap">{!item.Name}</div>
+                                </th>
+                                <th scope="row"> 
+                                    <div class="slds-cell-wrap">{!item.Name}</div>
+                                </th>
+                                <th scope="row"> 
+                                    <div class="slds-cell-wrap">{!item.Name}</div>
+                                </th>
+                                <th scope="row"> 
+                                    <div class="slds-cell-wrap">{!item.Name}</div>
+                                </th>
+                                <th scope="row"> 
+                                    <div class="slds-cell-wrap">{!item.Name}</div>
+                                </th>
+                                <th scope="row">
+                                    <div class="slds-cell-wrap">{!item.Name}.</div>
+                                </th>
+                            </tr>
+                        
+                    <!--/div-->
+                    
+                    <aura:if isTrue="{!item.expanded}" >
+                        <section class="slds-tree__branch slds-is-open" role="treeitem" aria-expanded="true" >
+                            <div class="slds-tree__item" rowspan="2">  
+                                <div class="slds-truncate" rowspan="2">
+                                    <div>
+                                        <h2><b>Address</b></h2>
+                                    	<ui:outputText value="{!item.Title}"/>
+                                    	<hr class="hrline"/>
+                                    </div>
+                                    <h2><b>ASN Quantity</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Sales Order Quantity</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Original Quantity</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Cancelled Quantity</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Return sales Order number</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Original Sales Order Number</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2><b>Unit</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Unit Price</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Discount Amount</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Net Amount</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Open Ext Amount</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Purchase Unit Price</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                    <h2><b>Kit Item</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2><b>Revenue share Vender</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2><b>FullFiller hours of Operation</b></h2>
+                                    <p>{!item.Name}</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                
+                            </div>
+                        </section>
+                        
+                        <section class="slds-tree__branch slds-is-open" role="treeitem" aria-expanded="true" >
+                            <div class="slds-tree__item">  
+                                <div class="slds-truncate">
+                                    <h2>Column 1.1</h2>    
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                    
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2>Column 2.1</h2>
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2>Column 3.1</h2>
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2>Column 4.1</h2>
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                
+                            </div>
+                        </section>
+                        <section class="slds-tree__branch slds-is-open" role="treeitem" aria-expanded="true" >
+                            <div class="slds-tree__item">  
+                                <div class="slds-truncate">
+                                    <h2>Column 1.1</h2>
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2>Column 2.1</h2>
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2>Column 3.1</h2>
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                <div class="slds-truncate">
+                                    <h2>Column 4.1</h2>
+                                    <p>Some text..</p>
+                                    <hr class="hrline"/>
+                                </div>
+                                
+                            </div>
+                        </section>
+                        
+                    </aura:if>
+                  </tbody>
+                </aura:iteration>
+                    
+            </table>
+            </div>
+        </lightning:layoutItem>
+        
+    </lightning:layout>
+    <lightning:textarea label="area" maxlength="350"/>
+</aura:component>

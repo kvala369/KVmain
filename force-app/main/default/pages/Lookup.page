@@ -1,0 +1,41 @@
+<!-- linked with custom looup page -->
+<apex:page controller="LookupClass">
+   <script language="javascript">
+       window.onload = new function() 
+       { 
+          // bring popup window to front
+          window.focus(); 
+          var ele=document.getElementById('{!$Component.form.block.section.query}');
+          if (ele)
+          {
+             ele.focus();
+          }
+       }
+       
+       function fillIn(name, id)
+       {
+          var winMain=window.opener;
+          if (null==winMain)
+          {
+             winMain=window.parent.opener;
+          }
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.namefield}');
+          ele.value=name;
+          ele=winMain.document.getElementById('{!$CurrentPage.parameters.idfield}');
+          ele.value=id;
+          winMain.closeLookupPopup();
+       }
+   </script>
+
+<apex:form >
+<apex:pageBlock >
+    <apex:pageBlockTable value="{!mob}" var="c" >
+        <apex:column headerValue="MOBILE NAME">
+           <apex:outputLink value="#" onclick="fillIn('{!c.name}','{!c.id}')">{!c.name}</apex:outputLink>    
+        </apex:column>
+
+    </apex:pageblocktable>
+</apex:pageBlock>
+  </apex:form>
+
+</apex:page>

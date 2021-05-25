@@ -1,0 +1,11 @@
+<apex:page title="About Lead Scoring">    
+  <apex:form id="theForm">                
+  <apex:pageBlock >            
+       <apex:pageBlockButtons >                
+              <apex:commandButton value="Continue" action="{!continue}"/>&nbsp;&nbsp;&nbsp;
+              <apex:commandButton value="Don't Show Me This Again" action="{!save}"/>&nbsp;&nbsp;&nbsp;
+        </apex:pageBlockButtons>   
+  </apex:pageBlock>   
+  
+ </apex:form>
+</apex:page>

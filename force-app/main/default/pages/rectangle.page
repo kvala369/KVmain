@@ -1,0 +1,12 @@
+<apex:page controller="Rectangle">
+ <apex:pageBlock title="Rectangle">
+  <apex:form >
+   length : <apex:inputText value="{!length}"/><br/>
+   breadth : <apex:inputText value="{!breadth}"/><br/>
+   
+   <apex:commandButton value="area" action="{!area}"/>
+   <apex:commandButton value="perimeter" action="{!perimeter }"/>
+   <apex:inputText value="{!res}"/>
+  </apex:form>
+ </apex:pageBlock>
+</apex:page>

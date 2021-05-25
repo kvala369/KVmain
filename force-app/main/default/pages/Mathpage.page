@@ -1,0 +1,12 @@
+<apex:page controller="Mathclass">
+  <apex:pageBlock title="Addtion">
+  <apex:form >
+  <!--Enter FistNo:<apex:inputText />-->
+  <apex:outputText value="    Enter FirstNo     "/>
+  <apex:inputText value="{!num1}"/><br/>
+  
+  Enter SecondNo:<apex:inputText value="{!num2}"/><br/>
+  <apex:commandButton value="SUB" action="{!sub}"/><apex:inputText value="{!res}"/>
+  </apex:form>
+  </apex:pageBlock>
+</apex:page>

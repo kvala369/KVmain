@@ -1,0 +1,8 @@
+<apex:page standardController="Account" extensions="enabledisable2" >
+  <apex:form >
+  <apex:inputText disabled="{!dis}" id="text"/>
+  <apex:commandButton value="Enable" rerender="oppName" id="btn"/>
+  
+  </apex:form>
+  
+</apex:page>

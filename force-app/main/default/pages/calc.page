@@ -1,0 +1,28 @@
+<apex:page controller="calculator" >
+  <apex:form >
+  <apex:pageBlock title="Calculator" tabStyle="Lead" >
+    <apex:panelGrid columns="2"  border="2">
+    <apex:inputText value="{!result}" size="28"/><br/>
+    <apex:panelGrid border="4"  bgcolor="white" columns="4" width="200px"  >
+    
+    <apex:commandButton value="    1    " action="{!one}"/>
+    <apex:commandButton value="    2    " action="{!two}"/>
+    <apex:commandButton value="    3    " action="{!three}"/>
+    <apex:commandButton value="    *    " action="{!mul}"/> 
+    <apex:commandButton value="    4    " action="{!four}"/>
+    <apex:commandButton value="    5    " action="{!five}"/>
+    <apex:commandButton value="    6    " action="{!six}"/>
+    <apex:commandButton value="    /    " action="{!div}"/>
+    <apex:commandButton value="    7    " action="{!seven}"/>
+    <apex:commandButton value="    8    " action="{!eight}"/>
+    <apex:commandButton value="    9    " action="{!nine}"/>
+    <apex:commandButton value="    +    " action="{!add}"/>
+    <apex:commandButton value="    c    " action="{!clear}"/>
+    <apex:commandButton value="    0    " action="{!zero}"/>
+    <apex:commandButton value="    -    " action="{!sub}"/>
+    <apex:commandButton value="    =    " action="{!equal}"/>
+    </apex:panelGrid>
+    </apex:panelGrid>
+  </apex:pageBlock> 
+  </apex:form>
+</apex:page>

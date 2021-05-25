@@ -1,0 +1,307 @@
+<apex:page standardController="case" renderAs="PDF" applyBodyTag="false"> <!--  extensions="CasePDFController" -->
+    
+<head>
+    <style>
+        body, html{
+            display: block;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            min-width: 100%;
+            font-family: "arial";
+            font-size: 0.95em;
+        }
+        .refImage{
+            display: block;
+            text-align: center;
+            border-bottom: 1px solid;
+        }
+        .gridContainer{
+        	display: block;
+        }
+        .gridContainer>.gridLayout{
+            display: block;
+            width: 900px;
+            margin: 0px auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .headerSection{
+        	display: block;
+        }
+        .headerSection>.logoSection,
+        .headerSection>.headerContainer{
+            display: inline-block;
+            margin-right: -5px;
+            vertical-align: bottom;
+        }
+        .headerSection>.logoSection>.logo{
+            display: block;
+            width: 120px;
+            height: 100px;
+            background-color: #c00;
+            margin-right: 5px;
+            
+        }
+        .headerSection>.headerContainer{
+        	width: calc(100% - 100px);
+        }
+        .headerSection>.headerContainer>.headerContent{
+        	display: block;
+        }
+        .headerContent .headerTextContainer{
+        	display: block;
+        }
+        .headerContent .headerTextContainer>div{
+        	display: inline-block;
+        	margin-right: -22px;
+        }
+        .headerContent .headerTextContainer>div.heading{
+            width: 112mm;
+            font-size: 1.5em;
+            text-align: center;
+            font-weight: bold;
+        }
+        .headerContent .headerTextContainer>div.dateSection{
+        	width: 200px;
+        	
+        }
+        .headerTextContainer>div.dateSection>ul{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .headerTextContainer>div.dateSection>ul>li{
+        	display: block;
+        }
+        .headerTextContainer>div.dateSection>ul>li>span{
+            display: inline-block;
+            width: 85px;
+        }
+        .headerTextContainer>div.dateSection>ul>li>span:first-child{
+            text-align: right;
+            padding: 8px;
+            padding-right: 15px;
+            font-weight: bold;	
+        }
+        .headerTextContainer>div.dateSection>ul>li>span:first-child:after{
+        	content: " : ";
+        }
+        .headerContent>div.blueBar{
+            display: block;
+            padding: 4px;
+            background-color: #191971;
+            color: #ba5439;
+            font-size: 1.2em;
+            text-align: right;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .captionSection{
+            display: block;
+            padding-top: 10px;
+            font-size: 1.2em;
+            color: #191971;
+        }
+        .addressContainer{
+        	display: inline-block;
+        	vertical-align: top;
+        	width: 40%;
+        	margin-right: 8px;
+        }
+        hr {
+        	border-bottom: 4px solid #191971;
+        	color: #191971;
+        	
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="gridContainer">
+		<div class="gridLayout">
+			<div class="headerSection">			
+				<div class="logoSection">
+					<span class="logo">Logo</span>
+				</div>
+				<div class="headerContainer">
+					<div class="headerContent">
+						<div class="headerTextContainer">
+							<div class="heading">
+								Service Request Report
+							</div>						
+							<div class="dateSection">
+								<ul>
+									<li>
+										<span style="color: #191971;">
+											From Date
+										</span>
+										<span> - </span>
+									</li><li>
+										<span style="color: #191971;">
+											To Date
+										</span>
+										<span> 1/11/2019 </span>
+									</li>
+								</ul>
+							</div>	
+						</div>						
+						<div class="blueBar">
+							<span>Ashley CSM Reporting</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="captionSection">
+				<b>**Order By: Date Opened, Request No</b>
+			</div>
+            
+            <div style="padding-top: 30px; padding-bottom: 10px;">
+                <table style="display: inline-block;">
+                    <tr>
+                        <td style="color: #191971;"><b>Request # </b></td>
+                        <td>1234<!--{!currentRecord.status} --></td>
+                        
+                    </tr>
+                </table>
+            
+                <table style="display: inline-block;">
+                    <tr>
+                        <td style="color: #191971; padding-left: 87px;"><b>Request Status &nbsp; </b></td>
+                        <td>closed<!--{!currentRecord.status} --></td>
+                        
+                    </tr>
+                </table>
+            </div>
+            
+            
+            <div style="display: block; width: 78%;">
+                <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td>
+                        <table style="border-collapse: collapse;" width="100%"> 
+                            <tr>
+                                <td style="border: 0.5px solid black; padding-left:5px;" height="100" width="60%">
+                                    <spam style="color: #191971;"><b>Ship to:</b></spam>
+                                    <ul>Address line 1 </ul>
+                                    <ul>Address line 2</ul>
+                                    <ul>Address line 3</ul>
+                                </td>
+                            </tr>
+                        </table>
+                        </td>
+                        <td>
+                        <table style="border-collapse: collapse;" width="100%"> 
+                            <tr >
+                                <td style="border: 0.5px solid black; padding-left:5px;" height="100">
+                                    <spam style="color: #191971;"><b>Tech info:</b></spam><br/>
+                                    <div style="padding-left:20px; ">
+                                        <spam style="color: #191971;"><b>Company Name:</b></spam> name<br/>
+                                    	<spam style="color: #191971;"><b>Service Tech:</b></spam> ---- ()<br/>
+                                    	<spam style="color: #191971;"><b>Ext. Stop Time:</b></spam> 1 (Estimated time for Stop)<br/>
+                                    </div>
+                                    
+                                    <spam style="color: #191971;"><b>Tech Scheduled Date:</b></spam> (Technician Schedule Date)<br/>
+                                </td>
+                                
+                            </tr>
+                        </table>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td colspan="2">
+                        <table style="border: 0.5px solid black;" width="100%" height="60"> 
+                            <tr >
+                                <td>
+                                    <spam style="color: #191971;"><b>Date Opened:</b></spam><br/>
+                                    Company Name
+                                </td>
+                                <td >
+                                    <spam style="color: #191971;"><b>Follow Up Date:</b></spam><br/>
+                                    Company Name
+                                </td>
+                                <td >
+                                    <spam style="color: #191971;"><b>Category/Reason Code:</b></spam><br/>
+                                    Company Name
+                                </td>
+                                <td >
+                                    <spam style="color: #191971;"><b>Assignee:</b></spam><br/>
+                                    Company Name
+                                </td>
+                                <td>
+                                    <spam style="color: #191971;"><b>Orig. Created by:</b></spam><br/>
+                                    Company Name
+                                </td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                </table>
+             </div>
+            <spam style="color: #191971; padding-left:5px;"><b>Parts Info:</b></spam><br/>
+            <div style="display: block; width: 50%; padding-left:5px;">
+                <table style="border: 0.5px solid black;" width="100%" height="60">
+                    <tr >
+                        <td>
+                            <spam style="color: #191971;"><b>Date Opened:</b></spam><br/>
+                            Company Name
+                        </td>
+                        <td >
+                            <spam style="color: #191971;"><b>Follow Up Date:</b></spam><br/>
+                            Company Name
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <spam style="color: #191971; padding-left:5px;"><b>Items Info:</b></spam><br/>
+            <div style="display: block; width: 50%; padding-left:5px;">
+                <table style="border: 0.5px solid black;" width="100%" height="60">
+                    <tr >
+                        <td>
+                            <spam style="color: #191971;"><b>Item Id#</b></spam><br/>
+                            Company Name
+                        </td>
+                        <td >
+                            <spam style="color: #191971;"><b>Date Invoiced</b></spam><br/>
+                            Company Name
+                        </td>
+                        <td >
+                            <spam style="color: #191971;"><b>Route/Stop</b></spam><br/>
+                            Company Name
+                        </td>
+                        <td >
+                            <spam style="color: #191971;"><b>Driver/Helper</b></spam><br/>
+                            Company Name
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <br/>
+            <spam style="color: #191971; padding-left:5px;"><b>All Comments:</b></spam><br/>
+            
+            
+            
+            
+            
+            
+            
+            
+            <!-- footer section -->
+            <div style="position: absolute;bottom: 10px;left: 0;width: 100%;">
+                <hr/>
+                <div style="text-align: left;">
+                   <p align="left">Ashley Furniture HomeStore-Altamonte</p> 
+                </div>
+                
+            </div>
+            
+		</div>
+	</div>
+    
+</body>
+</apex:page>

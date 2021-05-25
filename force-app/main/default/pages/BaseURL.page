@@ -1,0 +1,5 @@
+<apex:page controller="BaseURL" sidebar="false">
+    <apex:repeat value="{!listAcct}" var="a">
+        <a href="{!$Site.BaseUrl}/{!a.Id}" target="_blank">{!a.Name}</a><br/>
+    </apex:repeat>
+</apex:page>

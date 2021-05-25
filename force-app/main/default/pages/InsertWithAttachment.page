@@ -1,0 +1,14 @@
+<apex:page controller="InsertWithAttachment">
+  <apex:form >
+      <apex:pageBlock >
+          name: <apex:inputText value="{!bname}"/><br/>
+          Qty: <apex:inputText value="{!bqty}"/><br/>
+          Phone:<apex:inputText value="{!bphone}"/><br/>
+          <apex:commandButton value="insert record" action="{!inset}"/>
+      </apex:pageBlock>
+      
+      <c:GBL_Attachments customLabel="Upload Resume (this is required)" maxAllow="10" IdPrefix="Sample"  customLabel2="* This is  mandatory" globalAttachment="{!attachmentHelper}" validType="pdf,jpeg,jpg,docx,doc,.xls,xlsx,csv,txt,msg,html"> </c:GBL_Attachments>
+                
+                
+  </apex:form>
+</apex:page>

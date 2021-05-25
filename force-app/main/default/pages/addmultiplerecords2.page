@@ -1,0 +1,25 @@
+<apex:page controller="creatingListOfRecordsCon" showHeader="false">
+    <apex:form >
+        <apex:pageblock title="Adding Rows" >
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:pageBlockButtons location="top">
+            <apex:commandButton value="add row" action="{!addrow}"/>
+            <apex:outputLabel id="ol"> {!counter}</apex:outputLabel>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockTable value="{!mobilewrap}" var="m" >
+                <apex:column headerValue="name"> <apex:inputField value="{!m.name}"/> </apex:column>
+                <apex:column headerValue="price"> <apex:inputField value="{!m.Qty__c}"/> </apex:column>
+                <apex:column headerValue="qty"> <apex:inputField value="{!m.Price__c}"/> </apex:column>
+                <apex:column headerValue="percentage">  </apex:column>
+                <apex:column headerValue="Action">  
+                
+                <apex:commandLink value="Delete" action="{!removingRow}" immediate="true">
+                      
+                </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            
+        </apex:pageblock> 
+    </apex:form>
+</apex:page>

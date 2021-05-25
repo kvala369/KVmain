@@ -1,0 +1,265 @@
+<apex:component controller="GBL_AttachmentController" allowDML="true">
+    <apex:includeScript value="{!URLFOR($Resource.Jquery_Core_Plugin, 'jquery-1.9.1.min.js')}" />
+    <script>
+    
+            
+                 function Gbl_Attach_addError(jQueryObject, message)
+                {
+                    if(jQueryObject.parent().find('div.errorMsg').length != 0)
+                    {
+                        jQueryObject.parent().find('div.errorMsg').each(function(){
+                            $(this).html(message);
+                        });
+                    }
+                    else
+                    {
+                        jQueryObject.parent().append('<div class="errorMsg">'+message+' </div>');
+                    }
+                }
+                
+                function Gbl_Attach_removeError(jQueryObject)
+                {
+                    if(jQueryObject.parent().find('div.errorMsg').length != 0)
+                    {
+                        jQueryObject.parent().find('div.errorMsg').each(function(){
+                            $(this).html('');
+                        });
+                        
+                    }
+                }
+                
+                
+                
+                function Gbl_Attach_validateAttachment(customID)
+                {
+                    //   alert('customID '+customID);
+                    var ext = $('.GBL_Attach_documentInput_'+customID).val().split('.').pop().toLowerCase();
+                    /*Pull the user passed alid types : validType_{!customId} */
+                    var validType= $('#validType_'+customID).val();
+                    //alert(""+validType);
+                    var isValid=true;
+                    
+                    if(validType!='' && validType!=undefined )
+                    {
+                       var validFileTypes=validType.split(',');
+                        //alert(""+validFileTypes);
+                       if( $.inArray(ext, validFileTypes) == -1)
+                       {
+                           Gbl_Attach_addError($('.GBL_Attach_documentInput_'+customID),'Please select a valid file ('+validFileTypes+').');
+                           isValid=false;
+                       }
+                    }
+                    //alert('isVaid '+isValid);
+                    if(isValid==true)
+                    {
+                        Gbl_Attach_clickThis('updateAttachment');
+                    }
+                    
+                    
+                }
+                function Gbl_Attach_clickThis(id)
+                {
+                    $("[id$="+id+"]").click();
+                }
+    
+                function Gbl_Attach_confirmDelete()
+                {
+                    var confirmed= confirm("Are you sure, you want to delete.");
+                    
+                    return confirmed;
+                }
+    </script>
+    
+    
+    
+     <apex:attribute name="globalAttachment" 
+      type="GBL_Attachments" 
+      assignTo="{!attachmentHelper}" 
+      required="true" 
+      description="The controller for the page." />
+    
+    <apex:attribute name="customLabel" 
+      type="string" 
+      assignTo="{!label}" 
+      required="false" 
+      description="Label for the Controller" />
+    
+     <apex:attribute name="customLabel2" 
+      type="string" 
+      assignTo="{!label2}" 
+      required="false" 
+      description="Label for the Controller" />
+    
+    <apex:attribute name="validType" 
+      type="string" 
+      assignTo="{!types}" 
+      required="false" 
+      description="Label for the Controller" />
+    
+     <apex:attribute name="maxAllow" 
+      type="string" 
+      assignTo="{!maxlimit}" 
+      required="false" 
+      description="Maximum allowed attachments" />
+    
+     <apex:attribute name="IdPrefix" 
+      type="string" 
+      assignTo="{!customId}" 
+      required="true" 
+      description="Custom Id Prefix to control modifier" />
+    
+    
+    <apex:outputPanel rendered="{!attachmentHelper!=null}">
+        <!-- Label One -->
+        <div  class="{!if(label==null, 'hide','')}">
+            <apex:outputLabel styleClass="labelClass, Gbl_Attach_paddingTop"  rendered="{!label!=null}">{!label} </apex:outputLabel>
+        </div>
+        <!-- Hidden valid types of attachment -->
+        <input type="hidden" value="{!types}" id="validType_{!customId}" />
+        <!-- Input section for the attchment -->
+        <apex:outputPanel rendered="{!or(!haslimit, if(attachmentHelper.UploadedDocumentList.size<limitCount,true,false))}">
+           <apex:inputFile value="{!attachmentHelper.body}" style="cursor:pointer" filename="{!attachmentHelper.doc.Name}" contentType="{!attachmentHelper.doc.ContentType}"   styleClass="GBL_Attach_documentInput_{!customId}"/>
+           <span class="btn btn-blue" onclick="Gbl_Attach_validateAttachment('{!customId}');">Upload</span>
+             <apex:commandButton status="loading" styleClass="Gbl_Attach_hide" id="updateAttachment" action="{!attachmentHelper.uploadDocument}" value="Upload All"/>
+        </apex:outputPanel>
+        
+        <!-- Label Two -->
+        <div class="{!if(label2==null, 'hide','')} Gbl_Attach_paddingTop">  
+            <apex:outputLabel styleClass="Gbl_Attach_labels,Gbl_Attach_paddingTop" style="font-size:16px;   color: #81bc00;"  rendered="{!label2!=null}">{!label2}</apex:outputLabel></div>
+    <apex:outputPanel styleClass="Gbl_Attach_paddingTop" id="receiptsList" rendered="{!if(attachmentHelper.UploadedDocumentList.size>0,true,false)}">    
+                        <input type="hidden" id="GBL_Attach_Count"  value="{!attachmentHelper.UploadedDocumentList.size}"/>
+                          <table class="Gbl_Attach_attachListTable">
+                                <tr class="Gbl_Attach_attachListRow" >
+                                      <th style="align:center;">    Name
+                                      </th>
+                                      <th>
+                                              Size
+                                      </th>
+                                      <th>
+                                              Delete
+                                      </th>
+                                  </tr>
+                                  
+                                  <apex:repeat value="{!attachmentHelper.UploadedDocumentList}" var="docWrapper">
+                                   <tr class="Gbl_Attach_attachListRow" >
+                                       <td style="word-wrap:break-word;">{!docWrapper.docName}</td>
+                                       <td>{!docWrapper.size}</td>
+                                       <td>
+                                           <apex:commandLink action="{!attachmentHelper.deleteAttachment}" style="text-decoration: none;" onclick="return Gbl_Attach_confirmDelete();"  >
+                                                <apex:param name="deletedDocId" value="{!docWrapper.documentId}" assignTo="{!attachmentHelper.deleteDocId}"/>
+                                               <span class="crossBtn"><img src="{!URLFOR($Resource.CandidateExpenseImages, 'Delete.png')}"  style="width: 20px;"/></span>
+                                           </apex:commandLink>
+                                       
+                                       </td>
+                                  </tr>
+                                  </apex:repeat>
+                              </table>
+                              
+                           </apex:outputPanel>
+        </apex:outputPanel>
+    
+    
+    <style>
+        
+      
+        .Gbl_Attach_paddingTop
+        {
+        padding: 10px 0px 0px 0px;
+        }
+        .labelClass
+        {
+            font-size:18px;
+            color: #81bc00;
+            
+        }
+        .Gbl_Attach_hide
+        {
+          Visibility : hidden !important;
+        }
+        
+         .Gbl_Attach_StylBtn
+        {
+            padding:8px 10px 8px 10px;
+            border-radius:3px;
+            background-color:#82a600;
+            color:#fff;
+            margin:10px 0px 10px 0px;
+            cursor:pointer;
+            display: inline-block;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .Gbl_Attach_StylBtn:hover
+        {
+            background-color:#82bb00;
+        
+        }
+        .Gbl_Attach_disabledBtn
+        {
+            background-color:#A8A8A8 !important ;
+        }
+        
+        .Gbl_Attach_attachListTable  
+        {
+           
+            margin-bottom: 1em;
+            width: 100%;
+            background: #fff;
+        }
+        .rightAlign
+        {
+            text-align:right;
+        }
+        .Gbl_Attach_attachListTable td, th 
+        {
+            padding: 0.65em 1.2em;
+           //padding: 1.5em 1.5em;
+        //text-align: center;
+        }
+        
+        .Gbl_Attach_attachListTable tr{
+            
+            
+            border-bottom: 1px solid #dcdcdc;
+            border-top: 1px solid #dcdcdc;    
+        }
+        
+      .Gbl_Attach_attachListRow  th 
+      {
+          // background-color: #002776;
+          // font-style: bold;
+             color: #B4B4B4;
+             white-space: nowrap;
+             font-weight: normal;
+             font-size: 14px;
+             
+        }
+    
+        .Gbl_Attach_attachListRow tr:nth-child(2n-1) {
+            background-color: #f5f5f5;
+            transition: all .125s ease-in-out;
+        }
+        .Gbl_Attach_attachListRow tr:hover {
+            background-color: rgba(129,208,177,.3);
+        }
+        .TOD-UI footer
+        {
+            border:0px!important
+        }
+        
+        .subheader.title 
+        {
+            color: #81bc00;
+        }
+
+        
+         .errorMsg
+        {
+            color : red  !important;
+            font-size:12px;
+        }
+        
+    </style>
+    
+</apex:component>

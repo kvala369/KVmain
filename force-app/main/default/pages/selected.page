@@ -1,0 +1,92 @@
+<apex:page controller="Selected"  sidebar="false" tabStyle="contact">
+    <script>
+        function checkAll(cb)
+        {
+            var inputElem = document.getElementsByTagName("input");
+            for(var i=0; i<inputElem.length; i++)
+            {
+                if(inputElem[i].id.indexOf("checkedone")!=-1)
+                inputElem[i].checked = cb.checked;
+            }
+        }
+    </script>
+<apex:form >
+
+
+
+
+<!-- *****************************************  Patient Information pageblock table start ******************************************************************* -->
+
+<apex:commandButton value="Send FOr Bidding" action="{!GetSelected}"/>
+
+<apex:pageBlock title="Patient Information" id="pball" rendered="{!allpbrender}">
+
+<apex:pageBlockSection title="Interests Results -  Page #{!pageNum}" columns="1">
+
+<apex:pageblocktable value="{!Biddings}" var="tm" id="pbtb1" >
+ <apex:column >
+                        <apex:facet name="header"> 
+                        <apex:inputCheckbox />
+                          <!-- <apex:actionSupport event="onclick" action="{!GetSelected}" onsubmit="checkAll(this)" rerender="Selected_PBS"/>
+                            </apex:inputCheckbox>-->
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!tm.selected}" id="checkedone"/>
+                        <!-- <apex:actionSupport event="onclick" action="{!GetSelected}" rerender="Selected_PBS"/></apex:inputCheckbox>-->
+                    </apex:column>
+
+       <apex:column headerValue="Name">
+          <apex:commandlink value="{!tm.acc.Name}" action="/{!tm.acc.id}"/>
+       </apex:column>
+                              
+       <apex:column headerValue="Email" value="{!tm.acc.Email}"/>
+       <apex:column headerValue="Phone" value="{!tm.acc.Phone}"/>
+       
+            
+     
+                           
+       
+        
+</apex:pageblocktable>
+                        
+</apex:pageBlockSection>
+                        
+</apex:pageBlock>
+<!-- *****************************************  Patient Information pageblock table end******************************************************************* -->
+    <apex:panelGrid columns="8">
+        <apex:commandLink action="{!first}">first </apex:commandLink>|
+            <apex:commandLink action="{!previous}" rendered="{!hasPrevious}">previous</apex:commandLink>|
+            <apex:commandLink action="{!next}" rendered="{!hasNext}" > next </apex:commandLink>|
+            <apex:commandLink action="{!last}" > last </apex:commandLink>|
+    </apex:panelGrid>
+
+
+<apex:pageBlock id="pbs" rendered="{!selectedrender}">
+  <apex:actionRegion >
+          <apex:pageBlockSection Title="Selected Accounts" id="Selected_PBS">
+<apex:inputField value="{!interest.AccountId}">
+            <apex:actionSupport event="onchange" action="{!AccountPopulated}" rerender="Selected_PBS"/> 
+         </apex:inputField> 
+      <apex:pageBlockTable value="{!SelectedBiddings}" var="s" >
+                 
+                    <apex:column headervalue="Name" value="{!s.Name}" />
+                     <apex:column headervalue="Account Number" value="{!s.accountid}" />
+                   
+                    <apex:column headervalue="Account Number" value="{!s.Email}" />
+                    <apex:column headervalue="Phone" value="{!s.PHone}" />
+                      
+               <apex:column >
+               <apex:outputText value="{!itemtotal}"></apex:outputText>
+
+               </apex:column>
+               
+                </apex:pageBlockTable>
+        </apex:pageBlockSection>
+      </apex:actionRegion>
+      
+
+
+            
+            </apex:pageBlock>
+           
+</apex:form>
+  </apex:page>

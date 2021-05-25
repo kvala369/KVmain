@@ -1,0 +1,122 @@
+<apex:page controller="CandidateSearchController" sidebar="false">
+ <script type="text/javascript">
+      function doSearch() {
+        searchServer(
+          document.getElementById("First_Name__c").value,
+          document.getElementById("Last_Name__c").value,
+          document.getElementById("City__c").value,
+          document.getElementById("Education__c").options[document.getElementById("Education__c").selectedIndex].value
+          );
+      }
+      </script> 
+ 
+  <apex:form >
+  <apex:pageMessages id="errors" />
+ 
+  <apex:pageBlock title="Find Me A Candidate!" mode="edit">
+ 
+  <table width="100%" border="0">
+  <tr>  
+    <td width="200" valign="top">
+ 
+      <apex:pageBlock title="Parameters" mode="edit" id="criteria">
+ 
+       
+ 
+      <apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors">
+          <apex:param name="First_Name__c" value="" />
+          <apex:param name="Last_Name__c" value="" />
+          <apex:param name="City__c" value="" />
+          <apex:param name="Education__c" value="" />
+      </apex:actionFunction>
+ 
+      <table cellpadding="2" cellspacing="2">
+      <tr>
+        <td style="font-weight:bold;">First Name<br/>
+        <input type="text" id="First_Name__c" onkeyup="doSearch();"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;">Last Name<br/>
+        <input type="text" id="Last_Name__c" onkeyup="doSearch();"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;">City<br/>
+        <input type="text" id="City__c" onkeyup="doSearch();"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;">Education<br/>
+          <select id="Education__c" onchange="doSearch();">
+            <option value=""></option>
+            <apex:repeat value="{!Education }" var="edc">
+              <option value="{!edc}"> {!edc}</option>
+            </apex:repeat>
+          </select>
+        </td>
+      </tr>
+      </table>
+ 
+      </apex:pageBlock>
+ 
+    </td>
+    <td valign="top">
+ 
+    <apex:pageBlock mode="edit" id="results">
+ 
+        <apex:pageBlockTable value="{!candidates}" var="candidate">
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="First Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="first_name__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!Candidate.First_Name__c}"/>
+            </apex:column>
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Last Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="last_Name__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!candidate.Last_Name__c}"/>
+            </apex:column>
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="City" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="City__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!candidate.City__c}"/>
+            </apex:column>
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Education" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Education__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!candidate.Education__c}"/>
+            </apex:column>
+ 
+        </apex:pageBlockTable> 
+ 
+    </apex:pageBlock> 
+ 
+    </td>
+  </tr>
+  </table>
+ 
+  <apex:pageBlock title="Debug - SOQL" id="debug">
+      <apex:outputText value="{!debugSoql}" />           
+  </apex:pageBlock>    
+ 
+  </apex:pageBlock>
+ 
+  </apex:form>
+ 
+</apex:page>

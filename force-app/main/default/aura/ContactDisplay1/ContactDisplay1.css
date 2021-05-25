@@ -1,0 +1,24 @@
+.THIS {
+}
+
+.THIS .column {
+    float: Left;
+    width: 25%;
+    padding: 10px;
+    height: 315px;
+}
+.THIS .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.THIS .hrline {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    width: 60%;
+}
+
+.THIS .thwidth {
+    padding-right: 27px;
+    padding-left: 45px;
+}

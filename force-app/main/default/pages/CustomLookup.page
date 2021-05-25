@@ -1,0 +1,33 @@
+<apex:page controller="CustonLookup" >
+<script>
+            var newWin=null;
+            function openLookupPopup(name, id){
+                var url="/apex/Lookup?namefield=" + name + "&idfield=" + id;
+                newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+                if (window.focus){
+                    newWin.focus();
+                }
+                return false;
+            }
+                  
+            function closeLookupPopup(){
+               if (null!=newWin){
+                   newWin.close();
+                   insertclose();
+               }  
+            }           
+</script>
+<apeX:form >
+<apex:outputPanel layout="inline" style="vertical-align:middle" >
+           
+            <apex:outputLabel >Name:</apex:outputLabel>                 
+            <apex:inputText id="targetName" value="{!oldrecordid}"> 
+            </apex:inputText>          
+            <apex:inputhidden value="{!b.name}" id="targetId"  />
+            <a href="#" onclick="openLookupPopup('{!$Component.targetName}', '{!$Component.targetId}'); return false">
+            <apex:image style="vertical-align:middle;width:21px; height:21px" value="/img/icon/telescope16.png" /> </a> 
+<!--            <apex:actionFunction name="insertclose" action="{!oldRecordSearch}" rerender="pb"/>  -->         
+            <br/><br/>   
+      </apex:outputPanel>
+</apeX:form>
+</apex:page>

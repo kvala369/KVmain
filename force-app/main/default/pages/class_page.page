@@ -1,0 +1,17 @@
+<apex:page sidebar="false" controller="classpagecontroller" >
+<apex:form >
+
+
+<apex:pageBlock >
+<apex:pageBlockTable value="{!diaplay1}" var="disp">
+<apex:column headerValue="Name" value="{!disp.name}"/>
+<apex:column headerValue="Block 2" value="{!disp.id}"/>
+<apex:column headerValue="Block 3" value="{!disp.Phone}"/>
+</apex:pageBlockTable>
+
+</apex:pageBlock>
+
+
+
+</apex:form>
+</apex:page>

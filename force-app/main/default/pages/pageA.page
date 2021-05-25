@@ -1,0 +1,6 @@
+<apex:page standardController="Contact" showHeader="false">
+           
+  <apex:iframe src="../apex/Contact" scrolling="true" id="theIframe"/>
+
+   
+</apex:page>

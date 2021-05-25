@@ -1,0 +1,14 @@
+<apex:page controller="FindIpAddress" action="{!getipaddress}">
+Country:{!country}
+ 
+Isp:{!isp}
+ 
+IP:{!ip}
+ 
+Latitude:{!latitude}
+ 
+Longitude{!longitude}
+ 
+TimeZone: {!timezone}
+ 
+</apex:page>

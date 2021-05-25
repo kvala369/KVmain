@@ -1,0 +1,223 @@
+<aura:component controller="CasePDFCompCont" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+	
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="recval" type="Object[]" default="[]" />
+    
+    
+    <body>
+    <div class="gridContainer" >
+		<div class="gridLayout">
+			<div class="headerSection">			
+				<div class="logoSection">
+					<span class="logo">Logo</span>
+				</div>
+				<div class="headerContainer">
+					<div class="headerContent">
+						<div class="headerTextContainer">
+							<div class="heading">
+								Service Request Report
+							</div>						
+							<div class="dateSection">
+								<ul>
+									<li>
+										<span>
+											From Date
+										</span>
+										<span> {!v.recval[0].Status} </span>
+									</li><li>
+										<span>
+											To Date
+										</span>
+										<span> 1/11/2019 </span>
+									</li>
+								</ul>
+							</div>	
+						</div>						
+						<div class="blueBar">
+							<span>Ashley CSM Reporting</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="captionSection">
+				<b>**Order By: Date Opened, Request No</b>
+			</div>
+		
+        
+        
+        <div style="padding-top: 30px; padding-bottom: 10px;">
+            
+                <table class="inlineTable" >
+                    <tr>
+                        <td>Cell content</td>
+                        <td>Cell content</td>
+                        
+                    </tr>
+                </table>
+                <table class="inlineTable">
+                    <tr>
+                        <td>Cell content</td>
+                        <td>Cell content</td>
+                        
+                    </tr>
+                </table>
+          </div> 
+            
+            <div>
+                <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td>
+                            <table style="border-collapse: collapse;" width="100%"> 
+                                <tr>
+                                    <td style="border: 0.5px solid black; padding-left:5px;" height="120" width="60%">
+                                        <ul><b>Ship to:</b></ul>
+                                        <div style="padding-left:5px;">
+                                            <ul>Address line 1 </ul>
+                                            <ul>Address line 2</ul>
+                                            <ul>Address line 3</ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="padding-left: 5px;">
+                            <table style="border-collapse: collapse;" width="100%"> 
+                                <tr >
+                                    <td style="border: 0.5px solid black; padding-left:5px; " height="120">
+                                        <b>Tech info:</b><br/>
+                                        <div style="padding-left:20px; ">
+                                            <b>Company Name:</b> name<br/>
+                                            <b>Service Tech:</b> ---- ()<br/>
+                                            <b>Ext. Stop Time:</b> 1 (Estimated time for Stop)<br/>
+                                        </div>
+                                        
+                                        <b>Tech Scheduled Date:</b> (Technician Schedule Date)<br/>
+                                    </td>
+                                    
+                                </tr>
+                            </table>
+                        </td>
+                    </tr><br/> 
+                    <tr>
+                        <td colspan="2">
+                        <table style="border: 0.5px solid black;" width="100%" height="60"> 
+                            <tr >
+                                <td>
+                                    <b style="color: #191971;">Date Opened:</b><br/>
+                                    Company Name
+                                </td>
+                                <td >
+                                    <b style="color: #191971;">Follow Up Date:</b><br/>
+                                    Company Name
+                                </td>
+                                <td >
+                                    <b style="color: #191971;">Category/Reason Code:</b><br/>
+                                    Company Name
+                                </td>
+                                <td >
+                                    <b style="color: #191971;">Assignee:</b><br/>
+                                    Company Name
+                                </td>
+                                <td>
+                                    <b style="color: #191971;">Orig. Created by:</b><br/>
+                                    Company Name
+                                </td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                 </table>
+            </div>
+            <br/>
+            <b>Parts Info:</b><br/>
+            <div style="display: block; width: 50%;">
+                <table style="border: 0.5px solid black;" width="100%" height="60">
+                    <thead>
+                    <tr >
+                        <th scope="col">
+                            <div class="slds-truncate" title="Date Opened">Date Opened:</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Follow Up Date">Follow Up Date:</div>
+                        </th>	
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.recval}" var="SO">
+                            <tr>
+                                <td data-label="Charges Description">
+                                    <div class="slds-truncate" title="ChargesDescription">{!SO.Id}</div>
+                                </td>
+                                
+                                <td data-label="Item Number">
+                                    <div class="slds-truncate" title="ItemNumber">{!SO.Status}</div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+            
+            <br/>
+            <b style="color: #191971;">Items Info:</b><br/>
+            <div style="display: block; width: 100%;">
+                <table style="border: 0.5px solid black;" width="100%" height="60">
+                    <tr >
+                        <td>
+                            <b style="color: #191971;">Item Id#</b><br/>
+                            Company Name
+                        </td>
+                        <td >
+                            <b style="color: #191971;">Date Invoiced</b><br/>
+                            Company Name
+                        </td>
+                        <td >
+                            <b style="color: #191971;">Route/Stop</b><br/>
+                            Company Name
+                        </td>
+                        <td >
+                            <b style="color: #191971;">Driver/Helper</b><br/>
+                            Company Name
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div style="display: block;">
+                <table style="border: 0px solid black;" width="100%" height="60">
+                    <thead>
+                        <tr >
+                            <th scope="col">
+                                <div style="color: #191971;">All Comments:</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Charges Description">
+                                <div class="slds-truncate">comments</div>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <br/><br/><br/><br/><br/>
+            
+            
+            <div id="footer">
+                <hr/>
+            </div>
+            
+                
+                
+            
+            
+        </div> 
+	</div>
+    
+        
+    </body>
+    
+</aura:component>

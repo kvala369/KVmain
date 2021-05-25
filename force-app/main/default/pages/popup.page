@@ -1,0 +1,64 @@
+<apex:page controller="popup" sidebar="false" showHeader="true">
+
+<style type="text/css">
+
+        .popup
+        {
+            background-color: yellow;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            width: 500px;
+            margin-left: -250px;
+            top:80px;
+        }
+
+        .popupBg
+        {
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 70);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+
+    </style>
+    <apex:form >
+   Click new Button open popup window: <apex:commandlink value="New" action="{!ShowPopup}"/>
+    <apex:pageBlock title="Bottle Information" id="pb">
+        <apex:pageblocktable value="{!Bottles}" var="a" title="CUSTOM" rendered="{!tab_var}">
+         <apex:column value="{!a.Name}"/>
+         <apex:column value="{!a.price__c}"/>
+         <apex:column value="{!a.Quantity__c}"/>
+        </apex:pageblocktable>
+    </apex:pageBlock>
+   
+   
+<!-- ******************************popup block code start *********************************************************** -->
+     <apex:outputPanel id="popup">
+        <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
+            <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
+                NEW Popup window :<br/>
+                <center>
+                Enter Bottle Details:<br/><br/><br/><br/>
+                <apex:panelGrid columns="2">
+                Bottle Name:<apex:inputText value="{!bname}"/><br/>
+                Bottle Price:<apex:inputText value="{!cost}"/><br/>
+                Bottle Quantity:<apex:inputText value="{!qty}"/><br/>
+                
+                </apex:panelGrid>
+                <apex:commandButton value="Cancel" action="{!closePopup}" rerender="popup"/>
+                <apex:commandButton value="save" action="{!save}" rerender="popup,pb"/>
+                 </center>
+            </apex:outputPanel>
+        </apex:outputPanel>
+<!-- ******************************popup block code end*********************************************************** -->
+    </apex:form>
+</apex:page>

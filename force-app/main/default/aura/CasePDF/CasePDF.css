@@ -1,0 +1,120 @@
+.THIS {
+}
+.THIS body, .THIS html{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    font-family: "arial";
+    font-size: 0.95em;
+}
+.THIS .refImage{
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid;
+}
+.THIS .gridContainer{
+    display: block;
+}
+.THIS .gridContainer>.gridLayout{
+    display: block;
+    width: 900px;
+    margin: 0px auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.THIS .headerSection{
+    display: block;
+}
+.THIS .headerSection>.logoSection,
+.THIS .headerSection>.headerContainer{
+    display: inline-block;
+    margin-right: -5px;
+    vertical-align: bottom;
+}
+.THIS .headerSection>.logoSection>.logo{
+    display: block;
+    width: 120px;
+    height: 100px;
+    background-color: #c00;
+    margin-right: 5px;
+    /*border: 1px solid #c00;*/
+}
+.THIS .headerSection>.headerContainer{
+    width: calc(100% - 120px);
+}
+.THIS .headerSection>.headerContainer>.headerContent{
+    display: block;
+    /*padding: 15px;*/
+}
+.THIS .headerContent .headerTextContainer{
+    display: block;
+    /*border: 1px solid #c00;*/
+}
+.THIS .headerContent .headerTextContainer>div{
+    display: inline-block;
+    margin-right: -5px;
+}
+.THIS .headerContent .headerTextContainer>div.heading{
+    width: calc(100% - 200px);
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.THIS .headerContent .headerTextContainer>div.dateSection{
+    width: 200px;
+}
+.THIS .headerTextContainer>div.dateSection>ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.THIS .headerTextContainer>div.dateSection>ul>li{
+    display: block;
+}
+.THIS .headerTextContainer>div.dateSection>ul>li>span{
+    display: inline-block;
+    width: 85px;
+}
+.THIS .headerTextContainer>div.dateSection>ul>li>span:first-child{
+    text-align: right;
+    padding: 8px;
+    padding-right: 15px;
+    font-weight: bold;	
+}
+.THIS .headerTextContainer>div.dateSection>ul>li>span:first-child:after{
+    content: " : ";
+}
+.THIS .headerContent>div.blueBar{
+    display: block;
+    padding: 8px;
+    background-color: #191971;
+    color: #ba5439;
+    font-size: 1.2em;
+    text-align: right;
+    font-weight: bold;
+    font-style: italic;
+}
+.THIS .captionSection{
+    display: block;
+    padding-top: 15px;
+    font-size: 1.2em;
+    color: #191971;
+}
+.THIS .inlineTable {
+    display: inline-block;
+}
+
+.THIS hr {
+    border-bottom: 4px solid #191971;
+    color: #191971;
+}
+.THIS footer{
+    position: absolute;
+    width: 62%;
+    bottom: 0;
+}

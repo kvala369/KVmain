@@ -1,0 +1,5 @@
+<apex:page controller="EmailValidationCon">
+  <apex:pageBlock >
+  
+  </apex:pageBlock>
+</apex:page>

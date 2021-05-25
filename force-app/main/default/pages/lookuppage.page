@@ -1,0 +1,36 @@
+<apex:page controller="lookuppage" showHeader="false">  
+ <script language="javascript">  
+   window.onload = new function()   
+   {  // bring popup window to front  
+    window.focus();   
+  var ele=document.getElementById('{!$Component.form.block.section.query}');  
+    if (ele)   { ele.focus();   }  }  
+   function fillIn(name, id)  {    
+    var winMain=window.opener;if (null==winMain)  {      
+     winMain=window.parent.opener;    
+     }    
+      var ele=winMain.document.getElementById('{!$CurrentPage.parameters.namefield}');  
+     ele.value=name;  
+     ele=winMain.document.getElementById('{!$CurrentPage.parameters.idfield}');  
+    ele.value=id;   
+    ele.focus();  
+    winMain.closeLookupPopup();  
+    }  
+   </script>  
+ <apex:form >  
+  <apex:pageBlock mode="maindetail" id="show">  
+  <apex:pageMessage severity="error" summary="No Matcing Data Found" rendered="{!showerror}"></apex:pageMessage>  
+   <apex:pageblocksection >  
+   <apex:pageBlockTable value="{!listofrecords}" var="rec">  
+    <apex:column value="{!rec.id}" rendered="{!IF(Fields.size == 0 , true, false)}"/>  
+    <!--<apex:column value="{!rec.name}" /> -->  
+    <apex:repeat value="{!Fields}" var="FieldLable">   
+      <apex:column rendered="{!IF(FieldLable != ' ' , true, false)}" >  
+       <apex:outputLink value="#" onclick="fillIn('{!rec[FieldLable]}', '{!rec.id}')" >{!rec[FieldLable]}</apex:outputLink>   
+      </apex:column>   
+         </apex:repeat>       
+   </apex:pageBlockTable>  
+   </apex:pageblocksection>   
+  </apex:pageBlock>  
+ </apex:form>  
+ </apex:page>

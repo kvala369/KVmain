@@ -1,0 +1,52 @@
+<apex:page standardController="lead" showHeader="false" extensions="selectedvalues">
+    <apex:sectionHeader title="lead Edit" subtitle="{!lead.name}"/> 
+    <apex:form > 
+        <apex:pageBlock title="lead Edit" mode="edit"> 
+        <apex:pageBlockButtons location="top"> 
+            <apex:commandButton value="Save" action="{!save}"/> 
+            <apex:commandButton value="Save & New" action="{!save}" /> 
+            <apex:commandButton value="Cancel" action="{!cancel}"/> </apex:pageBlockButtons> 
+        <apex:pageBlockButtons location="bottom"> 
+            <apex:commandButton value="Save" action="{!save}"/> 
+            <apex:commandButton value="Save & New" action="{!save}" />
+            <apex:commandButton value="Cancel" action="{!cancel}"/> 
+        </apex:pageBlockButtons> 
+    <apex:pageBlockSection title="Lead Information" columns="2">
+        <apex:inputField value="{!lead.OwnerId}" required="false"/> 
+        <apex:inputField value="{!lead.Phone}" required="false"/>
+        <apex:inputField value="{!lead.FirstName}" required="false"/> 
+        <apex:inputField value="{!lead.MobilePhone}" required="false"/> 
+        <apex:inputField value="{!lead.LastName}" required="true"/> 
+        <apex:inputField value="{!lead.Fax}" required="false"/> 
+        <apex:inputField value="{!lead.Company}" required="true"/> 
+        <apex:inputField value="{!lead.Email}" required="false"/> 
+        <apex:inputField value="{!lead.Title}" required="false"/> 
+        <apex:inputField value="{!lead.Website}" required="false"/> 
+        <apex:inputField value="{!lead.LeadSource}" required="false"/>
+        <apex:inputField value="{!lead.Status}" required="true"/>
+        <apex:inputField value="{!lead.Industry}" required="false"/>
+        <apex:inputField value="{!lead.Rating}" required="false"/>
+        <apex:inputField value="{!lead.AnnualRevenue}" required="false"/> 
+        <apex:inputField value="{!lead.NumberOfEmployees}" required="false"/>
+    </apex:pageBlockSection> 
+    <!-- <apex:pageBlockSection title="Address Information" columns="2"> 
+         <apex:inputField value="{!lead.Street}" required="false"/> 
+         <apex:inputField value="{!lead.City}" required="false"/> 
+         <apex:inputField value="{!lead.State}" required="false"/> 
+         <apex:inputField value="{!lead.PostalCode}" required="false"/>
+         <apex:inputField value="{!lead.Country}" required="false"/>
+    </apex:pageBlockSection> 
+    <apex:pageBlockSection title="Additional Information" columns="2"> 
+         <apex:inputField value="{!lead.ProductInterest__c}" required="false"/> 
+         <apex:inputField value="{!lead.CurrentGenerators__c}" required="false"/> 
+         <apex:inputField value="{!lead.SICCode__c}" required="false"/> 
+         <apex:inputField value="{!lead.Primary__c}" required="false"/> 
+         <apex:inputField value="{!lead.NumberofLocations__c}" required="false"/> 
+    </apex:pageBlockSection> 
+    <apex:pageBlockSection title="Description Information" columns="1"> 
+         <apex:inputField value="{!lead.Description}" required="false"/> 
+    </apex:pageBlockSection> -->
+    
+    </apex:pageBlock> 
+    </apex:form> 
+</apex:page>

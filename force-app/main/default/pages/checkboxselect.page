@@ -1,0 +1,56 @@
+<apex:page controller="checkboxselectcon">
+  <apex:form >
+  <apex:pageBlock >
+  check1:<apex:inputCheckbox label="yes" value="{!chk1}"/>
+  check2:<apex:inputCheckbox label="No" value="{!chk2}"/>
+      <br/>
+      
+      display:<apex:outputText value="{!output}"></apex:outputText><br/>
+      <apex:commandButton value="click" action="{!click}"/>
+   </apex:pageBlock>
+      
+    <apex:pageBlock >
+        <apex:pageblocksection >
+        <apex:inputcheckbox value="{!chkBx}" label="checkBox">   
+            <apex:actionSupport event="onchange" rerender="thePanel" action="{!click1}"/>   
+        </apex:inputcheckbox>
+        <apex:outputPanel id="thePanel">   
+            <apex:pageBlockSectionItem rendered="{!displayInputputText}">
+                <apex:outputLabel value="Input Text" />
+                <apex:inputText value="{!input}"/> 
+            </apex:pageBlockSectionItem>
+        </apex:outputPanel>
+        </apex:pageblocksection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock >
+    <apex:inputcheckbox value="{!chkBx1}" label="checkBox">   
+        <apex:actionSupport event="onchange" rerender="thePane2" action="{!click2}"/>   
+    </apex:inputcheckbox>
+    
+    <apex:outputPanel id="thePane2" > 
+        <apex:inputText value="{!input1}" rendered="{!display}"/> 
+    </apex:outputPanel>
+    </apex:pageBlock>
+    
+    <apex:pageBlock >
+        <apex:pageBlockSection columns="2">
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Metro"/>
+            </apex:pageblockSectionItem>       
+            <apex:pageblockSectionItem >               
+                <apex:inputCheckbox value="{!metro}">            
+                    <apex:actionSupport event="onchange" reRender="a" action="{!demo}"/>
+                </apex:inputCheckbox>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="City"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:inputCheckbox value="{!city}" id="a" disabled="{!bool}"/>
+            </apex:pageblockSectionItem>           
+        </apex:pageBlockSection>       
+    </apex:pageBlock>
+    
+  </apex:form>
+</apex:page>

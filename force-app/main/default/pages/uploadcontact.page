@@ -1,0 +1,53 @@
+<apex:page sidebar="false" controller="UpdateContactController">
+   <apex:form >
+      <apex:sectionHeader title="Mass Updates to Contact Records"/>
+      <apex:pagemessages />
+      <apex:pageBlock >
+      <p>
+      1.  Use "Mass Updates to Contact Template" excel file  <br/>
+      2.  Download blank template <a href="{!URLFOR($Resource.MassUpdateContactsTemplate    )}" target="_blank"> here </a>  <br/>
+      3.  Upload 500 rows or less at a time. Make sure your data is clean (delete Row 1 before saving)<br/>
+      4.  Save your file as .CSV and Upload<br/>
+      5.  If records display below they do not exist in the system.  Please add the contact to Salesforce and upload those failed rows again.<br/><br/><br/>
+
+      
+      </p>
+             <left>
+              <apex:inputFile value="{!contentFile}" filename="{!nameFile}" /> 
+              <apex:commandButton action="{!ReadFile}" value="Upload File" id="theButton" style="width:70px;"/><br/><br/>
+    <!--          <br/> <br/> <font color="red"> <b>Note: Please use the standard template to upload Contacts. <a href="{!URLFOR($Resource.AccountUploadTemplate)}"  target="_blank">  Click here  </a> to download the template. </b> </font>-->
+           <apex:outputPanel rendered="{!NOT(ISNULL(totalsuccessreccount))}">{!totalsuccessreccount} Records successfully updated </apex:outputPanel>  <br/>
+            <apex:outputPanel rendered="{!NOT(ISNULL(totalunsuccessrec))}">{!totalunsuccessrec} Emails do not exist </apex:outputPanel>
+                
+             </left>  
+      
+      
+     <!-- <apex:pageblocktable value="{!uploadedAccounts}" var="acc" rendered="{!NOT(ISNULL(uploadedAccounts))}"> -->
+      
+      
+      </apex:pageBlock>
+      <apex:pageBlock rendered="{!b}"> 
+      <left>
+            <apex:commandButton action="{!pg}" value="Export Errors" rendered="{!NOT(ISNULL(wrapper))}" /></left>
+            
+            <br/><br/>
+       <apex:pageBlockTable value="{!wrapper}" var="wrap" rendered="{!NOT(ISNULL(wrapper))}">
+       
+                
+                <apex:column headerValue="Personnel Number" value="{!wrap.PersonnelNumber1}"/> 
+                <apex:column headerValue="Benifit Plan" value="{!wrap.BenifitPlan1}"/> 
+                 <!--
+                <apex:column headerValue="First Name" value="{!wrap.firstname1}"/>
+                <apex:column headerValue="Last Name" value="{!wrap.lastname1}"/>
+                <apex:column headerValue="Email" value="{!wrap.email1}"/>
+                <apex:column headerValue="SchoolRecruiter" value="{!wrap.SchoolRecruiter1}"/> 
+                <apex:column headerValue="SchoolProgram" value="{!wrap.schoolprogram1}"/>
+                 <apex:column headerValue="CRDroppedResume" value="{!wrap.CRDroppedResume1}"/>
+                 
+               -->
+               </apex:pageBlockTable>
+               
+               
+     </apex:pageBlock> 
+   </apex:form>   
+</apex:page>

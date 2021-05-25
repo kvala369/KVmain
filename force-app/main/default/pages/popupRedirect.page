@@ -1,0 +1,51 @@
+<apex:page controller="popupRedirectclass">
+<style type="text/css">
+
+        .popup
+        {
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            width: 500px;
+            margin-left: -250px;
+            top:80px;
+        }
+
+        .popupBg
+        {
+            background-color:yellow;
+            opacity: 0.20;
+            filter: alpha(opacity = 70);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+</style>    
+
+    <apex:form id="popupbox">
+        <apex:pageBlock >
+            <apex:commandButton value="button" action="{!showpopup}" reRender="popupbox"/>
+        </apex:pageBlock>
+        
+        <apex:pageBlock >
+            <apex:outputPanel id="popup">
+                <!-- <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/> -->
+                <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
+                    <apex:panelGrid columns="4">
+                        
+                        <apex:commandButton value="YES" action="{!yes}" />
+                        <apex:commandButton value="NO" action="{!no}" />
+                        
+                    </apex:panelGrid>
+                </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,15 @@
+<apex:page controller="selectedvalues" sidebar="false">
+  <apex:form >
+      <apex:pageBlock >
+          <apex:selectList size="1" value="{!selectval}">
+              <apex:selectOptions value="{!options}"></apex:selectOptions>
+              <apex:actionSupport event="onchange" action="{!changeValue}" rendered="true"/>
+          </apex:selectList>
+      </apex:pageBlock>
+      <apex:pageBlock id="pb">
+          <!-- <apex:include pageName="{!page1}"/> -->
+          <apex:iframe src="{!page1}" scrolling="true" id="theIframe" rendered="true"/>
+          <!-- <apex:iframe src="../apex/lead" scrolling="true" id="theIframe1" rendered="false"/> -->
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

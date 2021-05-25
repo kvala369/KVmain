@@ -1,0 +1,14 @@
+<apex:page controller="displayValuesclass">
+  <apex:form >
+   <apex:pageBlock >
+     <apex:pageBlockTable value="{!page}" var="p">
+      names <apex:column value="{!p.name}"/>
+      names <apex:column value="{!p.email__c}"/>
+      <apex:column value="{!p.id}"/>
+      <Apex:column >
+          <apex:commandButton value="send mail" action="{!transfer}"/>
+      </Apex:column>
+     </apex:pageBlockTable>
+   </apex:pageBlock>
+  </apex:form>
+</apex:page>

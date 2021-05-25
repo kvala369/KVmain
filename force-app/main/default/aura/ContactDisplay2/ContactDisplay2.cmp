@@ -1,0 +1,149 @@
+<aura:component controller="ContactAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                											    access="global" >
+    
+    <aura:attribute name="items" type="Object[]" default="[]" />
+    <aura:attribute name="idvalue" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  	
+    <lightning:layout multipleRows="true">   
+           <lightning:layoutItem size="12"> 
+               <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table_col-bordered slds-tree slds-table--tree" >
+                   <div class="Table">
+                       <div class="Title">
+                           <div class="Row">
+                               <div class="Cell">
+                                   <p>Details</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 1</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 2</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 3</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 4</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 5</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 6</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 7</p>
+                               </div>
+                               <div class="Cell">
+                                   <p>Header 8</p>
+                               </div>
+                           </div>
+                           <aura:iteration items="{!v.items}" var="item" indexVar="itemIndex">
+                               
+                                   <div class="Row">
+                                       <div class="Cell">
+                                           <lightning:buttonIcon value="{!itemIndex}" onclick="{!c.toggle}" iconName="{!item.expanded?'utility:chevrondown':'utility:chevronright'}" />
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Id}</div>
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Name}</div>
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Name}</div>
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Name}</div>
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Name}</div>
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Name}</div>
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Name}</div>
+                                       </div>
+                                       <div class="Cell">
+                                           <div class="slds-truncate" >{!item.Name}</div>
+                                       </div>
+                                   </div>
+                               
+                                   <aura:if isTrue="{!item.expanded}" >
+                                       <section style="border-style: outset;  border-width: thin;" >
+                                           <div class="rows">  
+                                               <div class="column">
+                                                   <div>
+                                                       <h2><b>Address</b></h2>
+                                                       <ui:outputText value="{!item.Title}"/>
+                                                       <hr class="hrline"/>
+                                                   </div>
+                                                   <h2><b>ASN Quantity</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Sales Order Quantity</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Original Quantity</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Cancelled Quantity</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Return sales Order number</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Original Sales Order Number</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                               </div>
+                                               <div class="slds-truncate">
+                                                   <h2><b>Unit</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Unit Price</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Discount Amount</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Net Amount</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Open Ext Amount</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Purchase Unit Price</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                                   <h2><b>Kit Item</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                               </div>
+                                               <div class="slds-truncate">
+                                                   <h2><b>Revenue share Vender</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                               </div>
+                                               <div class="slds-truncate">
+                                                   <h2><b>FullFiller hours of Operation</b></h2>
+                                                   <p>{!item.Name}</p>
+                                                   <hr class="hrline"/>
+                                               </div>
+                                               
+                                           </div>
+                                       </section>
+                                       
+                                       
+                                       
+                                   </aura:if>
+                               
+                           </aura:iteration>
+                       </div>
+                   </div>
+               </table>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

@@ -1,0 +1,13 @@
+<apex:page sidebar="false">
+<apex:pageBlock >
+ <apex:form >
+
+  <apex:pageMessage severity="error" title="hi karthik" strength="1" ></apex:pageMessage> 
+  male<apex:inputCheckbox /><br/>
+  Discription<apex:inputTextarea /><br/>
+   <apex:commandButton value="save"/>
+   <apex:commandButton value="save & new"/>
+   <apex:commandButton value="cancel"/>
+ </apex:form>
+</apex:pageBlock>
+</apex:page>

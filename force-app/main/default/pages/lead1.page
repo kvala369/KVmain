@@ -1,0 +1,10 @@
+<apex:page controller="val" showHeader="false" sidebar="false">
+    <apex:form >
+    <apex:pageBlock >
+        Name<apex:inputText value="{!name}"/><br/> 
+        Qty:<apex:inputText value="{!bqty}"/><br/>
+        Phone:<apex:inputText value="{!bphone}"/><br/>
+        <apex:commandButton value="insert record" action="{!inset}" />
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

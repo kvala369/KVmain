@@ -1,0 +1,72 @@
+<apex:page >
+        <script language="JavaScript" src="/soap/ajax/10.0/connection.js"></script>
+        <script language="JavaScript">
+              
+            var req = null;
+            sforce.connection.sessionId ="{!$Api.Session_ID}";
+              
+            function loadXMLDoc(typed) {
+                if(typed =='')
+                {
+                    document.getElementById("searchResult").style.display = 'none'; 
+                }else{
+                    document.getElementById("searchResult").style.display = 'block'; 
+                    sforce.connection.query("select Name,Id from Contact where Name like '" + typed + "%' limit 10", onSuccess);
+                }
+            }
+  
+            function onSuccess(result) {
+                var sb = "";
+                var records = result.getArray("records");
+                for (var i = 0; i < records.length && i < 10; i++) {
+                    sb += "<span id="+records[i].Name +" onclick='divFunction(this.innerText);'>"+records[i].Name + "</span><br>";
+                }
+                getObject("searchResult").innerHTML = sb;
+            }
+  
+            function getObject(name) {
+                var ns4 = (document.layers) ? true : false;
+                var w3c = (document.getElementById) ? true : false;
+                var ie4 = (document.all) ? true : false;
+  
+                if (ns4) return eval('document.' + name);
+                if (w3c) return document.getElementById(name);
+                if (ie4) return eval('document.all.' + name);
+                return false;
+            }
+  
+            window.onload = function() {
+                getObject("q").focus();
+                document.getElementById("searchResult").style.display = 'none'; 
+            }
+              
+            function divFunction(name){
+                document.getElementById("q").value=name;
+                 document.getElementById("searchResult").style.display = 'none'; 
+                 alert('You have selected '+name);
+            }
+        </script>
+      
+        <div align="center">
+            <form>
+                <div align="left">
+                    <table>
+                        <tbody><tr>
+                            <td>
+                            Contact Name :
+                            </td>
+                            <td>
+                                <input autocomplete="off" type="text" name="q" id="q" size="20" onkeyup="loadXMLDoc(this.value)" style="width:200px;" ></input>
+                            </td>
+                        </tr>
+                            <tr>
+                            <td></td>
+                            <td>
+                                <div align="left" id="searchResult" name="searchResult" style="font-family:Arial; border:#000000 solid 1px; font-size:12px; width:200px; padding:4px; margin:0"></div> 
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </form>
+        </div>
+</apex:page>

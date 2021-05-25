@@ -1,0 +1,76 @@
+<aura:component implements="force:appHostable,force:hasRecordId,flexipage:availableForAllPageTypes,lightning:actionOverride,lightning:isUrlAddressable" access="global" 
+                			controller="ContactAuraController">
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="datalength" type="integer"/>
+    <aura:attribute name="selectedlength" type="integer"/>
+    <aura:attribute name="recordId" type="Id" />
+    
+	<aura:attribute name="headerTitle" type="Aura.Component[]">
+        <h2>
+            <b>Users Data ({!v.datalength})</b><br/>
+            Selected Check box: {!v.selectedlength}
+        </h2>
+    </aura:attribute>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <lightning:card class="slds-card_boundary" iconName="custom:custom3" title="{!v.headerTitle}" >
+        <p class="slds-p-horizontal_small">
+            <div class="slds-scrollable--x">
+                
+                <table class="slds-table slds-table--bordered  slds-table--cell-buffer slds-no-row-hover slds-max-medium-table_stacked">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th scope="col" class="slds-text-align_center">
+                                <div class="slds-truncate" title="">Detail</div>
+                            </th>
+                            <th scope="col" class="slds-text-align_center">
+                                <div class="slds-truncate" title="">record Id</div>
+                            </th>
+                            <th scope="col" class="slds-text-align_center">
+                                <div class="slds-truncate" title="">User Name</div>
+                            </th>
+                           
+                            <th scope="col" class="slds-text-align_center">
+                                <div class="slds-truncate" title="">Email</div>
+                            </th>
+                           
+                        </tr>
+                    </thead>
+              <!-- Fecthing the user deatils -->      
+                    <tbody>
+                        
+                        <aura:iteration var="u" items="{!v.data}" indexVar="itemIndex">
+                            <tr>
+                                <td>
+                                	                                    
+                                </td>
+                                
+                                
+                                <td class="slds-text-align_center" >
+                                    {!u.Id}
+                                </td>
+                                <td class="slds-text-align_center" >
+                                    
+                                    {!u.Name}
+                                </td>
+                               
+                                <td class="slds-text-align_center" >
+                                    {!u.Email}
+                                    <!--<ui:inputText value="{!u.Email}"/>-->
+                                </td>
+                                
+                                                                
+                            </tr>
+                            
+                            
+                            
+                        </aura:iteration>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </p>
+    </lightning:card>
+    
+</aura:component>

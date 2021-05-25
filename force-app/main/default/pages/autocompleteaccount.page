@@ -1,0 +1,14 @@
+<apex:page controller="SearchClass" docType="html-5.0" showHeader="false">
+  <apex:form >
+  <br/>
+ <center>
+      <apex:outputText >Enter Searching Name : </apex:outputText><apex:inputText value="{!searchval}" list="{!listOfStrings}"/>
+      <apex:commandButton value="search" action="{!mySearch}" reRender="pb"/>
+ </center>   
+      <apex:pageBlock id="pb">
+          <apex:pageBlockTable value="{!acclist}" var="a">
+              <apex:column value="{!a.name}"/>
+          </apex:pageBlockTable>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

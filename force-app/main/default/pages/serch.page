@@ -1,0 +1,30 @@
+<apex:page controller="enquiry">
+    <apex:form >
+    <apex:pageBlock >
+     <apex:pageBlockButtons >
+      <apex:commandButton value="search" action="{!search}"/>
+     </apex:pageBlockButtons>
+     <apex:panelGrid cellspacing="2" columns="2" >
+    trainer <apex:inputText value="{!trainer}"/>
+   
+    course <apex:inputText value="{!course}"/>
+    </apex:panelGrid>
+    
+    <apex:dataTable value="{!records}" var="r" cellpadding="20px,10px" bgcolor="yellow">
+    
+       <apex:column value="{!r.id}"/>
+       <apex:column value="{!r.name}"/>
+    
+    </apex:dataTable>
+    
+    <apex:dataTable value="{!records1}" var="r" cellpadding="20px,10px">
+    
+       <apex:column value="{!r.id}"/>
+       <apex:column value="{!r.name}"/>
+    
+    </apex:dataTable>    
+    
+    
+   </apex:pageBlock>   
+   </apex:form>
+</apex:page>

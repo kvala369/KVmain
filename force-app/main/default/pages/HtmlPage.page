@@ -1,0 +1,29 @@
+<apex:page controller="HtmlPage"  applyBodyTag="false" showHeader="false">
+<apex:form >
+    <head>
+    </head>
+    
+    <body>
+        <table style="width:100%"><br/>
+  <tr>
+    <td align="center">sfsdf<apex:inputText /></td>
+    <td align="center">wefa<apex:inputText /></td>      
+    
+  </tr>
+  <tr>
+    <td align="center">sfsdf<apex:inputText /></td>
+    <td align="center">sfsdf<apex:inputText /></td>        
+    
+  </tr>
+  <tr>
+    <td align="center">sfsdf<apex:inputText /></td>
+    <td align="center">sfsdf<apex:inputText /></td>        
+   
+  </tr>
+</table>
+
+<center><apex:commandButton value="click"/></center>
+    </body>
+    
+</apex:form>
+</apex:page>

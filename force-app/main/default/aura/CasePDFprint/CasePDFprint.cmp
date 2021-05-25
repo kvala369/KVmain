@@ -1,0 +1,31 @@
+<aura:component >
+    
+    <!-- ltng:require scripts="{!$Resource.JsPDF}" />
+    <ltng:require scripts="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" />
+    <ltng:require scripts="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js" /> 
+    
+    <ltng:require scripts="{!$Resource.JsPDFdebug}" /> <ltng:require scripts="{!$Resource.JsPDFmin}" />
+    <ltng:require scripts="{!$Resource.JsPDFnode}" />  <ltng:require scripts="{!$Resource.JsPDFnodemin}" /> 
+	http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+	
+<ltng:require scripts="{!$Resource.jquery}" />
+-->
+    <ltng:require scripts="https://code.jquery.com/jquery-1.12.3.min.js"/>
+    <ltng:require scripts="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"/>
+    
+    
+    
+    
+    <div id="content">   
+    <c:CasePDF/>
+    </div>   
+    <div id="cmd">
+    <ui:button label="generate Pdf" press="{!c.toPDFFormat}"/>
+    </div>    
+    <br/>
+    <br/>
+    <br/>
+        
+        
+    
+</aura:component>

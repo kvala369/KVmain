@@ -1,0 +1,147 @@
+<apex:page controller="InvoicePage1" renderAs="pdf" applyBodyTag="false">
+    <head>
+        <style> 
+            #contentHeaderLeft {
+                font-weight:normal;
+                float:left;
+                width:200px;
+                height:400;
+                padding:10px;
+            }
+            #contentHeaderLeft p {
+                font-size:14px;
+                font-family: arial;
+            }
+            #contentHeaderRight {
+                font-family: arial;
+                font-weight:bold;
+                color:gray;
+                float:right;
+                width:400px;
+                height:400;    
+                padding:10px;                
+            } 
+            #contentHeaderRight p {
+                font-size:25px;
+            }
+            #contentClientAdd {
+                font-family: arial;
+                float:left;
+                width:200px;
+                height:300;
+                padding:10px;                
+            }
+            #contentInvNum {
+                font-family: arial;
+                float:right;
+                width:300px;
+                height:400;                    
+            } 
+            #contentTable {
+                font-family: arial;
+                float:left;
+                width:670px;
+                height:800;                    
+            } 
+            #contentTable p {
+                font-size:15px;
+                color:gray;
+            }
+        </style>       
+    </head>
+    
+    <body>
+        <apex:messages />
+        <div id="contentHeaderLeft">
+            <!-- <apex:image id="theImage" value="{!$Resource.LiveAssets}" width="120" height="100"/>             -->
+            
+            <p>243 Queen St.West<br/>
+            Toronto, ON M5V 1Z4<br/>
+            HST #:  891140519 RC0001<br/>
+            1467753 (Live Assets Ltd)<br/>
+            Vendor #&nbsp;&nbsp;<apex:outputtext value="{!vendor_value}"></apex:outputtext> <br/>
+            PO#&nbsp;&nbsp;<apex:outputtext value="{!po_value}"></apex:outputtext><br/></p>
+
+        </div>
+
+        <div id="contentHeaderRight" >          
+            <table width="100%">
+                <tr><td align="right"><p>INVOICE</p></td></tr>
+            </table>            
+        </div>
+        
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        
+        <div id="contentClientAdd">
+            <b>To,</b><br/>
+            <apex:outputLabel value="{!client_name}"></apex:outputLabel><br/>
+            <apex:outputLabel value="{!client_add}"></apex:outputLabel>
+        </div>
+
+        <div id="contentInvNum">
+           <apex:outputPanel dir="rtl">
+               <table align="right" width="100%">
+                   <tr>
+                       <th width="50%" align="right">Invoice No.&nbsp;&nbsp;&nbsp;</th>
+                       <td width="50%" ><apex:outputText value="{!invoice_no}"></apex:outputText></td>
+                   </tr>
+                   <tr>
+                       <th align="right">Date &nbsp;&nbsp;&nbsp;</th>
+                       <td>
+                            <apex:outputText value="{0,date}">
+                                <apex:param value="{!Today}" />
+                            </apex:outputText>
+                       </td>
+                   </tr>
+               </table>    
+           </apex:outputPanel>    
+        </div>
+        
+        <br/><br/><br/><br/><br/><br/>
+        
+        <div id="contentTable">
+            <table cellpadding="10" border="1" width="105%">
+                    <tr>
+                        <th align="center" width="55%">Description</th>
+                        <th align="center" width="15%">Hours</th>
+                        <th align="center" width="15%">Rate</th>
+                        
+                        <th align="center" width="15%">Amount</th>
+                    </tr>
+                    <tr height="80%">
+                        <td height="500">
+                            <apex:outputLabel >Service&nbsp;&nbsp;</apex:outputLabel>&nbsp;&nbsp;
+                            <apex:outputText value="{!service}" /><br/><br/>
+                            <apex:outputText value="{!des}" />
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                <apex:outputLabel value="Payment Terms : ">&nbsp;&nbsp;</apex:outputLabel>
+                                <apex:outputText value="{!pay_term}"></apex:outputText>
+                            <br/><br/><br/><br/><br/><br/>
+                        </td>
+                        <td align="center"><apex:outputText value="{!hrs}" />
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        </td>
+                        <td align="center"><br/><apex:outputText value="{!rate}" />
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <apex:outputLabel value="Sub Totals"/><br/>
+                            <apex:outputLabel value="{!hst_val}% HST"/>
+                        </td>
+                        <td align="right"><apex:outputText value="{!amt}" />
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <apex:outputtext value="{!sub_total}"/><br/>
+                            <apex:outputtext value="{!hst}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="60%" colspan="3" align="right">
+                            <apex:outputLabel value="Total"></apex:outputLabel>
+                        </td>
+                        <td align="right">
+                            <apex:outputtext value="{!total}"></apex:outputtext>
+                        </td>
+                    </tr>
+               </table>
+              <center> <p>We appreciate your business!</p></center>
+        </div>      
+    </body>
+</apex:page>

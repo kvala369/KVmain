@@ -1,0 +1,10 @@
+<apex:page controller="redirectonthebasisonpicklist" >
+    <Apex:form >
+        <center>
+            <apex:selectList value="{!picklistvalue}" size="1" >
+                <apex:selectOptions value="{!item}"/>
+                <apex:actionSupport event="onchange" action="{!redirect}" />    
+            </apex:selectList>
+        </center>
+    </Apex:form>
+</apex:page>

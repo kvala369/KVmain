@@ -1,0 +1,31 @@
+<apex:page controller="searchpage3con">
+<apex:form >
+  <apex:pageblock >
+    <apex:outputText > Enter the name : &nbsp;</apex:outputText>
+    <apex:inputText value="{!searchText}" /> &nbsp;
+    <apex:commandButton value="Search" action="{!doSearch}" rerender="pb" status="stat"/> &nbsp;&nbsp;
+    <apex:commandLink value="View all" action="{!viewall}" rerender="pb" status="stat"/> 
+    </apex:pageblock>
+  
+  <apex:pageblock id="pb" >
+    
+    <apex:actionStatus id="stat">
+    <apex:facet name="start">
+         <apex:image value="{!$Resource.LoadingImage}"/>
+    </apex:facet>
+              
+    <apex:facet name="stop">
+        <apex:pageblocktable value="{!lstcon}" var="c">
+        <apex:column headerValue="CaseNumber">
+        <apex:outputLink value="/{!c.id}">{!c.CaseNumber}</apex:outputLink>
+        </apex:column>
+        <apex:column value="{!c.FCPA_PPD_First_Name__c}"/>
+        <apex:column value="{!c.FCPA_PPD_Last_Name__c}"/> 
+       
+        <apex:column value="{!c.status}"/> 
+    </apex:pageblocktable>
+    </apex:facet>
+    </apex:actionStatus>
+</apex:pageblock> 
+</apex:form>
+</apex:page>

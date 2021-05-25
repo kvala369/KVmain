@@ -1,0 +1,99 @@
+<apex:page controller="ContactLookup_CTRL" title="Search"   showHeader="false"   sideBar="false"   tabStyle="Account"   id="pg"  >
+    
+    <script>
+    
+    function popup(url)
+    {
+          var index= url.indexOf('http');
+         if(index== -1)
+            {
+                url='http://'+url;
+            }
+                window.open(url ,"_blank", "width=500, height=500");
+    }
+    </script>
+    
+    <style>
+    body{
+    background: #fff url(/img/alohaSkin/lookup_bg.png) repeat-x;padding: 0;
+    }
+    </style>
+   <c:DeloitteLoading />
+   
+  <apex:form >
+  <apex:outputPanel id="page" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+        
+       
+        
+          <!-- SEARCH TAB -->
+          
+          <!-- <div class="content"><img src="/s.gif" alt="" class="pageTitleIcon" title=""> </img> <h1>Lookup</h1></div> -->
+          <apex:actionRegion >  
+
+              <div class="bPageTitle"><div class="ptBody secondaryPalette"><div class="content"><img src="/s.gif" alt="" class="pageTitleIcon" style="background-image: url(/img/sprites/master.png);background-position: 0 -1202px;" title=""></img><h1 style="font-size: 1.8em; color: #333435; margin: 8px 0 4px;">Contact Lookup</h1></div></div></div>
+
+                  <apex:outputPanel id="top" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+                    <apex:outputLabel value="Search Here" style="font-weight:Bold;padding-right:10px;" for="txtSearch"/>
+                    <apex:inputText id="txtSearch" value="{!searchString}" />
+                    <span style="padding-left:5px">
+                          <apex:commandButton id="btnGo" status="loading" value="Go"  action="{!Search}" rerender="searchResults,Label"></apex:commandButton>
+                      </span>
+                      <br/><br/>
+                      <span>
+                      Search with First Name/ Last Name/ a combination of First Name and Last Name/ Email. 
+                      </span>
+                      
+                     
+                      
+                  </apex:outputPanel>
+                <apex:outputPanel >
+                     <apex:outputLabel id="Label" style="font-weight:Bold;padding-left:10px;" value="{!label}"> </apex:outputLabel>
+                </apex:outputPanel>
+                <apex:outputPanel id="pnlSearchResults" style="margin:10px;height:350px;overflow-Y:auto;" layout="block">
+                    <apex:pageBlock id="searchResults"   > 
+                      <apex:outputPanel rendered="{!moreThanLimit}">
+                        Showing top {!maxLimit} search result. Try someother search filter to get exact search result.
+                      </apex:outputPanel>
+                        
+                      <apex:pageBlockTable value="{!results}" var="a" id="tblResults" >
+                       <apex:column >
+                          <apex:facet name="header">
+                            <apex:outputPanel >Name</apex:outputPanel>
+                          </apex:facet>
+                           <apex:outputLink value="javascript:top.window.opener.lookupPick2('{!FormTag}','{!TextBox}_lkid','{!TextBox}','{!a.Id}','{!a.Name}', false)" rendered="{!NOT(ISNULL(a.Id))}">{!a.Name}</apex:outputLink>     
+                        </apex:column>
+                              
+                        <apex:column >
+                          <apex:facet name="header">
+                            <apex:outputPanel >Email</apex:outputPanel>
+                          </apex:facet>
+                            <apex:outputPanel >{!a.email}</apex:outputPanel> 
+                        </apex:column>
+                         <apex:column >
+                          <apex:facet name="header">
+                            <apex:outputPanel >Function</apex:outputPanel>
+                          </apex:facet>
+                            <!-- <apex:outputPanel >{!a.WCT_Function__c}</apex:outputPanel>  -->
+                        </apex:column>
+                         <apex:column >
+                          <apex:facet name="header">
+                            <apex:outputPanel >Service Line</apex:outputPanel>
+                          </apex:facet>
+                           <!--  <apex:outputPanel >{!a.WCT_Service_Line__c}</apex:outputPanel>  -->
+                        </apex:column>
+                       
+                       </apex:pageBlockTable>
+                        <apex:outputLabel rendered="{!results.size<1}"> 
+                                No Contacts Found.
+                        </apex:outputLabel>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+            </apex:actionRegion>
+              
+          
+          
+          <!-- NEW ACCOUNT TAB -->
+        
+  </apex:outputPanel>
+  </apex:form>
+</apex:page>

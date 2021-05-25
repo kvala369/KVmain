@@ -1,0 +1,23 @@
+<apex:page controller="uploadfilecontroller">
+    <apex:form >
+        <apex:sectionHeader title="invoice" subtitle="new invoice"/>
+            <apex:pageBlock title="invoice edit">
+             <apex:pageBlockSection columns="2" title="information" collapsible="false">
+              <apex:inputField value="{!inc.Amount__c}"/>
+              <apex:inputField value="{!inc.Total__c}"/>
+              <apex:inputField value="{!inc.Rate__c}"/>
+              <apex:inputField value="{!inc.PO__c}"/>
+             
+             <apex:pageBlockSectionItem >
+             
+              <apex:outputPanel title="upload resume"> upload resume </apex:outputPanel>
+              <apex:inputFile accept="doc, txt, pdf" fileName="{!filename}" contentType="{!contenttype}" fileSize="1000"  size="50" value="{!resume}" />
+             </apex:pageBlockSectionItem>
+             
+             </apex:pageBlockSection>
+             
+             <center> <apex:commandButton value="submit" id="submitapplication" action="{!saveapplication}"/></center>
+             
+            </apex:pageBlock>
+    </apex:form>
+</apex:page>

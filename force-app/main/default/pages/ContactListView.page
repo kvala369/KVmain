@@ -1,0 +1,6 @@
+<apex:page tabStyle="contact">
+<!--    <apex:listViews type="contact"/> -->
+
+<!-- <apex:enhancedList type="contact" height="300" id="All_Contacts"/> -->
+ <c:ContactListViewComponent listViewName="Super Special Contacts"/>
+</apex:page>
